@@ -1,180 +1,521 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { BellRing, ShieldCheck, Smartphone, Eye } from "lucide-react";
+import {
+  Mail,
+  Map as MapIcon,
+  History,
+  Database,
+  ShieldCheck,
+  Globe,
+  Activity,
+  Navigation,
+} from "lucide-react";
 
-// 1. IMPORTA TUS CAPTURAS AQUÍ
-import sistemaInterno from "../assets/PruebaCorreo-ServiciosSTS.jfif"; // La de image_1efc55.jpg
-import alertaMovil from "../assets/PruebaMapa-ServiciosSTS.jfif";
+// CAPTURAS
+import dashboardMapa from "../assets/PruebaMapa-ServiciosSTS.jfif";
+import pruebaCorreo from "../assets/PruebaCorreo-ServiciosSTS.jfif";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 const MonitoreoReal = () => {
   return (
-    <section
-      id="control 360°"
-      style={{ ...styles.section, scrollMarginTop: "80px" }}
-    >
-      {" "}
-      <div style={styles.container}>
-        {/* Cabecera de la sección */}
-        <div style={styles.header}>
-          <h2 style={styles.title}>
-            NUESTRO <span style={styles.highlight}>SISTEMA DE CONTROL</span>
-          </h2>
-          <p style={styles.subtitle}>
-            Transparencia total. Así es como vigilamos tu carga desde nuestro
-            centro de mando hasta las notificaciones en tu bolsillo.
-          </p>
-        </div>
-
-        <div style={styles.contentGrid}>
-          {/* LADO IZQUIERDO: EXPLICACIÓN */}
-          <div style={styles.infoCol}>
-            <FeatureRow
-              Icon={Eye}
-              title="Panel de Control Central"
-              desc="Visualizamos toda la flota en tiempo real con telemetría avanzada (ignición, velocidad y GPS)."
-            />
-            <FeatureRow
-              Icon={BellRing}
-              title="Alertas Automatizadas"
-              desc="El sistema genera avisos automáticos de ingreso/salida de geocercas y paradas no autorizadas."
-            />
-            <FeatureRow
-              Icon={Smartphone}
-              title="Notificaciones al Cliente"
-              desc="Recibe correos con el estado exacto, conductor y ubicación del evento en tiempo real."
-            />
-          </div>
-
-          {/* LADO DERECHO: LAS IMÁGENES QUE MANDASTE */}
-          <div style={styles.visualCol}>
-            {/* Imagen del Sistema Interno (image_1efc55.jpg) */}
+    <div style={styles.pageWrapper}>
+      {/* SECCIÓN 1: HERO IMPACTANTE (FONDO #4ed5e2 + ANIMACIÓN) */}
+      <motion.section
+        initial={{ backgroundColor: "#4ed5e2" }}
+        animate={{
+          backgroundColor: ["#4ed5e2", "#3bc2cf", "#4ed5e2"],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={styles.heroSection}
+      >
+        <div style={styles.bgGridLight}></div>
+        <div style={styles.container}>
+          <div style={styles.heroCenterLayout}>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              style={styles.mainCard}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              style={styles.heroContentCenter}
             >
-              <span style={styles.tag}>SISTEMA INTERNO</span>
-              <img
-                src={sistemaInterno}
-                alt="Dashboard de Monitoreo"
-                style={styles.imgSistema}
-              />
-            </motion.div>
-
-            {/* Imagen de la Alerta (image_1efc72.jpg) */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              style={styles.overlayCard}
-            >
-              <span style={styles.tagAlerta}>ALERTA EN VIVO</span>
-              <img
-                src={alertaMovil}
-                alt="Notificación de ingreso"
-                style={styles.imgAlerta}
-              />
-              <p style={styles.imgRef}>
-                * Imagen referencial del sistema de alertas
+              <div style={styles.heroBadgeWhite}>
+                <Activity size={14} color="#000" />
+                <span style={styles.heroBadgeTextDark}>
+                  LIVE TELEMETRY SYSTEM
+                </span>
+              </div>
+              <h1 style={styles.heroTitleLarge}>
+                Control <span style={styles.heroTitleStroke}>360°</span>
+              </h1>
+              <p style={styles.heroSubtitleWhite}>
+                Monitoreo avanzado y trazabilidad total para operaciones
+                logísticas de alta exigencia. Una infraestructura diseñada para
+                el control absoluto.
               </p>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "100px" }}
+                transition={{ delay: 0.5, duration: 1 }}
+                style={styles.titleUnderlineWhite}
+              ></motion.div>
             </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Decoración inferior para suavizar la transición */}
+        <div style={styles.heroCurve}></div>
+      </motion.section>
+
+      {/* SECCIÓN 2: METODOLOGÍA */}
+      <section style={styles.methodologySection}>
+        <div style={styles.container}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            style={styles.methodologyCard}
+          >
+            <div style={styles.cardContent}>
+              <div style={styles.badgeLine}>
+                <span style={styles.methodTag}>METODOLOGÍA STS</span>
+                <motion.div
+                  animate={{ opacity: [1, 0.4, 1] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  style={styles.statusDot}
+                />
+              </div>
+              <h2 style={styles.methodTitle}>¿Cómo trabajamos?</h2>
+              <p style={styles.methodText}>
+                Servicios STS opera bajo un{" "}
+                <strong>sistema interno propietario</strong> diseñado para
+                centralizar la telemetría. Obtenemos toda la información de tu
+                transporte de manera segura, íntegra y en tiempo real.
+              </p>
+            </div>
+            <div style={styles.cardVisual}>
+              <Database size={32} color="#4ed5e2" strokeWidth={1.5} />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 3: DASHBOARD PRINCIPAL */}
+      <section style={styles.dashboardSection}>
+        <div style={styles.container}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={styles.header}
+          >
+            <h2 style={styles.title}>
+              OPERACIÓN EN <span style={styles.highlight}>VIVO 24/7</span>
+            </h2>
+            <p style={styles.proDescription}>
+              Nuestra plataforma centraliza flujos de datos complejos en una
+              interfaz intuitiva, permitiendo una visibilidad absoluta sobre
+              cada unidad, ruta y evento crítico dentro de la cadena logística.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={styles.mapCard}
+          >
+            <div style={styles.browserBar}>
+              <div style={styles.dots}>
+                <div
+                  style={{ ...styles.dot, backgroundColor: "#ff5f57" }}
+                ></div>
+                <div
+                  style={{ ...styles.dot, backgroundColor: "#febc2e" }}
+                ></div>
+                <div
+                  style={{ ...styles.dot, backgroundColor: "#28c840" }}
+                ></div>
+              </div>
+              <div style={styles.browserAddress}>
+                portal.velogistics.com/live-tracking
+              </div>
+            </div>
+            <img src={dashboardMapa} alt="Dashboard" style={styles.imgMain} />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 4: GRID DE SERVICIOS */}
+      <section style={styles.gridSection}>
+        <div style={styles.container}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={styles.gridIntro}
+          >
+            <h3 style={styles.gridStatement}>
+              Cubrimos cada necesidad de nuestros clientes en tiempo real
+            </h3>
+            <div style={styles.shortDivider}></div>
+          </motion.div>
+
+          <div style={styles.secondaryGrid}>
+            <Card
+              delay={0.1}
+              tag="AUTOMATION"
+              title="Email Reports"
+              icon={<Mail size={18} color="#4ed5e2" />}
+            >
+              <img src={pruebaCorreo} alt="Aviso" style={styles.imgSmall} />
+              <p style={styles.cardDesc}>
+                Notificaciones inteligentes vía Power Automate.
+              </p>
+            </Card>
+
+            <Card
+              delay={0.2}
+              tag="GEOSPATIAL"
+              title="Geocercas GPS"
+              icon={<MapIcon size={18} color="#4ed5e2" />}
+            >
+              <div style={styles.geoPlaceholder}>
+                <Navigation size={20} color="#4ed5e2" />
+              </div>
+              <p style={styles.cardDesc}>
+                Control perimetral con alertas de desviación activa.
+              </p>
+            </Card>
+
+            <Card
+              delay={0.3}
+              tag="CLOUD"
+              title="Azure History"
+              icon={<History size={18} color="#4ed5e2" />}
+            >
+              <div style={styles.historyList}>
+                <div style={styles.historyItem}>
+                  • Logs de seguridad activos
+                </div>
+                <div style={styles.historyItem}>• Respaldos en SQL Server</div>
+              </div>
+              <p style={styles.cardDesc}>
+                Trazabilidad total en infraestructura segura.
+              </p>
+            </Card>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            style={styles.footerStatus}
+          >
+            <div style={styles.statusGroup}>
+              <Globe size={14} color="#94a3b8" />
+              <span style={styles.statusText}>Alcance Global</span>
+            </div>
+            <div style={styles.dividerDot}></div>
+            <div style={styles.statusGroup}>
+              <ShieldCheck size={14} color="#4ed5e2" />
+              <span style={styles.statusText}>Seguridad Certificada</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 };
 
-// Sub-componente para las filas de texto
-const FeatureRow = ({ Icon, title, desc }) => (
-  <div style={styles.featureRow}>
-    <div style={styles.iconBox}>
-      <Icon size={24} color="#4ed5e2" />
+const Card = ({ tag, title, icon, children, delay }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
+    whileHover={{ y: -8, transition: { duration: 0.2 } }}
+    style={styles.infoCard}
+  >
+    <div style={styles.cardHeader}>
+      {icon}
+      <span style={styles.cardTag}>{tag}</span>
     </div>
-    <div>
-      <h4 style={styles.fTitle}>{title}</h4>
-      <p style={styles.fDesc}>{desc}</p>
-    </div>
-  </div>
+    <h4 style={styles.cardTitle}>{title}</h4>
+    {children}
+  </motion.div>
 );
 
 const styles = {
-  section: { padding: "100px 5%", backgroundColor: "#fff" },
-  container: { maxWidth: "1200px", margin: "0 auto" },
-  header: { textAlign: "center", marginBottom: "60px" },
-  title: { fontSize: "36px", fontWeight: "900", color: "#1a1a1a" },
-  highlight: { color: "#4ed5e2" },
-  subtitle: { color: "#666", maxWidth: "600px", margin: "15px auto" },
-  contentGrid: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "60px",
-    alignItems: "center",
+  pageWrapper: {
+    backgroundColor: "#fff",
+    paddingBottom: "60px",
+    overflowX: "hidden",
   },
-  infoCol: {
-    flex: "1 1 400px",
+  container: { maxWidth: "1100px", margin: "0 auto", padding: "0 20px" },
+
+  // NUEVO HERO ESTILO "FULL IMPACT"
+  heroSection: {
+    padding: "200px 0 150px 0",
+    position: "relative",
+    textAlign: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bgGridLight: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `radial-gradient(rgba(255,255,255,0.3) 1.5px, transparent 1.5px)`,
+    backgroundSize: "50px 50px",
+    zIndex: 0,
+  },
+  heroCenterLayout: { position: "relative", zIndex: 1, maxWidth: "800px" },
+  heroContentCenter: {
     display: "flex",
     flexDirection: "column",
-    gap: "30px",
+    alignItems: "center",
   },
-  visualCol: { flex: "1.2 1 500px", position: "relative", minHeight: "500px" },
-
-  // Estilos de las "Cards" de imagen
-  mainCard: {
-    backgroundColor: "#1a1a1a",
-    padding: "10px",
-    borderRadius: "15px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-    overflow: "hidden",
-  },
-  overlayCard: {
-    position: "absolute",
-    bottom: "-20px",
-    right: "-10px",
-    width: "280px",
+  heroBadgeWhite: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
     backgroundColor: "#fff",
-    padding: "10px",
-    borderRadius: "15px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-    border: "2px solid #4ed5e2",
+    padding: "10px 20px",
+    borderRadius: "100px",
+    marginBottom: "30px",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
   },
-  imgSistema: { width: "100%", borderRadius: "10px", display: "block" },
-  imgAlerta: { width: "100%", borderRadius: "8px", display: "block" },
-  tag: {
-    fontSize: "10px",
-    color: "#4ed5e2",
-    fontWeight: "bold",
-    marginBottom: "5px",
-    display: "block",
+  heroBadgeTextDark: {
+    fontSize: "11px",
+    fontWeight: "800",
+    color: "#000",
+    letterSpacing: "1px",
   },
-  tagAlerta: {
-    fontSize: "10px",
-    color: "#1a1a1a",
-    fontWeight: "bold",
-    marginBottom: "5px",
-    display: "block",
+  heroTitleLarge: {
+    fontSize: "90px",
+    fontWeight: "900",
+    color: "#fff",
+    letterSpacing: "-5px",
+    lineHeight: "0.85",
+    margin: 0,
   },
-  imgRef: {
-    fontSize: "9px",
-    color: "#999",
-    marginTop: "5px",
-    textAlign: "center",
+  heroTitleStroke: {
+    color: "transparent",
+    WebkitTextStroke: "1.5px white",
+  },
+  heroSubtitleWhite: {
+    fontSize: "22px",
+    color: "rgba(255,255,255,0.9)",
+    marginTop: "30px",
+    lineHeight: "1.5",
+    fontWeight: "500",
+  },
+  titleUnderlineWhite: {
+    height: "6px",
+    backgroundColor: "#000",
+    marginTop: "40px",
+    borderRadius: "10px",
+  },
+  heroCurve: {
+    position: "absolute",
+    bottom: -1,
+    left: 0,
+    right: 0,
+    height: "80px",
+    backgroundColor: "#fff",
+    clipPath: "ellipse(70% 100% at 50% 100%)",
   },
 
-  // Texto
-  featureRow: { display: "flex", gap: "20px" },
-  iconBox: {
-    backgroundColor: "#f0fdfa",
-    padding: "12px",
-    borderRadius: "12px",
+  // METODOLOGÍA
+  methodologySection: { padding: "100px 0", backgroundColor: "#fff" },
+  methodologyCard: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: "50px",
+    borderRadius: "32px",
+    border: "1px solid #f0f0f0",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.03)",
   },
-  fTitle: {
-    fontSize: "18px",
+  badgeLine: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    marginBottom: "15px",
+  },
+  methodTag: {
+    fontSize: "11px",
     fontWeight: "800",
-    color: "#1a1a1a",
-    margin: "0 0 5px 0",
+    color: "#94a3b8",
+    letterSpacing: "2px",
   },
-  fDesc: { fontSize: "14px", color: "#555", margin: 0 },
+  statusDot: {
+    width: "8px",
+    height: "8px",
+    backgroundColor: "#4ed5e2",
+    borderRadius: "50%",
+  },
+  methodTitle: {
+    fontSize: "34px",
+    fontWeight: "800",
+    color: "#111",
+    margin: "0 0 24px",
+  },
+  methodText: {
+    fontSize: "18px",
+    color: "#64748b",
+    maxWidth: "680px",
+    lineHeight: "1.8",
+  },
+  cardVisual: {
+    width: "80px",
+    height: "80px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f8fafc",
+    borderRadius: "24px",
+  },
+
+  // DASHBOARD
+  dashboardSection: { padding: "80px 0" },
+  header: { textAlign: "center", marginBottom: "60px" },
+  title: {
+    fontSize: "40px",
+    fontWeight: "800",
+    color: "#111",
+    letterSpacing: "-1px",
+  },
+  highlight: { color: "#4ed5e2" },
+  proDescription: {
+    color: "#64748b",
+    fontSize: "19px",
+    marginTop: "20px",
+    maxWidth: "800px",
+    margin: "20px auto 0",
+    lineHeight: "1.7",
+  },
+  mapCard: {
+    borderRadius: "24px",
+    border: "1px solid #eee",
+    overflow: "hidden",
+    boxShadow: "0 40px 80px rgba(0,0,0,0.06)",
+  },
+  browserBar: {
+    backgroundColor: "#fafafa",
+    padding: "18px 28px",
+    display: "flex",
+    alignItems: "center",
+    gap: "28px",
+    borderBottom: "1px solid #eee",
+  },
+  dots: { display: "flex", gap: "8px" },
+  dot: { width: "11px", height: "11px", borderRadius: "50%" },
+  browserAddress: { fontSize: "13px", color: "#94a3b8", opacity: 0.7 },
+  imgMain: { width: "100%", display: "block" },
+
+  // GRID
+  gridSection: { padding: "100px 0", backgroundColor: "#fcfcfc" },
+  gridIntro: { textAlign: "center", marginBottom: "60px" },
+  gridStatement: {
+    fontSize: "26px",
+    fontWeight: "700",
+    color: "#111",
+    maxWidth: "650px",
+    margin: "0 auto",
+  },
+  shortDivider: {
+    width: "35px",
+    height: "4px",
+    backgroundColor: "#4ed5e2",
+    margin: "20px auto 0",
+    borderRadius: "2px",
+  },
+  secondaryGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gap: "35px",
+  },
+  infoCard: {
+    padding: "35px",
+    backgroundColor: "#fff",
+    border: "1px solid #eee",
+    borderRadius: "28px",
+  },
+  cardHeader: {
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+    marginBottom: "25px",
+  },
+  cardTag: { fontSize: "11px", fontWeight: "800", color: "#cbd5e1" },
+  cardTitle: {
+    fontSize: "22px",
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: "18px",
+  },
+  cardDesc: { fontSize: "15px", color: "#64748b", lineHeight: "1.6" },
+  imgSmall: {
+    width: "100%",
+    borderRadius: "14px",
+    marginBottom: "20px",
+    border: "1px solid #f0f0f0",
+  },
+  geoPlaceholder: {
+    height: "90px",
+    backgroundColor: "#f9f9f9",
+    borderRadius: "18px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "20px",
+  },
+  historyList: { marginBottom: "20px" },
+  historyItem: { fontSize: "13px", color: "#94a3b8", marginBottom: "8px" },
+
+  footerStatus: {
+    marginTop: "80px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "24px",
+    padding: "20px",
+    backgroundColor: "#fff",
+    borderRadius: "100px",
+    border: "1px solid #f0f0f0",
+    width: "fit-content",
+    margin: "80px auto 0",
+  },
+  statusGroup: { display: "flex", alignItems: "center", gap: "10px" },
+  statusText: {
+    fontSize: "12px",
+    fontWeight: "600",
+    color: "#94a3b8",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+  },
+  dividerDot: {
+    width: "4px",
+    height: "4px",
+    backgroundColor: "#e2e8f0",
+    borderRadius: "50%",
+  },
 };
 
 export default MonitoreoReal;

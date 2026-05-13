@@ -7,11 +7,25 @@ import Clientes from "./components/Clientes.jsx";
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Nosotros />
-      <ContactoBanner />
-      <Beneficios />
-      <Clientes />
+      <section id="inicio">
+        <Hero />
+      </section>
+
+      <section id="nosotros">
+        <Nosotros />
+      </section>
+
+      <section id="contacto">
+        <ContactoBanner />
+      </section>
+
+      <section id="beneficios">
+        <Beneficios />
+      </section>
+
+      <section id="clientes">
+        <Clientes />
+      </section>
     </>
   );
 }

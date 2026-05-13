@@ -1,22 +1,22 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import BarraSuperior from "./components/BarraSuperior.jsx";
-import Hero from "./components/Hero.jsx";
-import Nosotros from "./components/Nosotros.jsx";
-import ContactoBanner from "./components/ContactoBanner.jsx";
-import Beneficios from "./components/Beneficios.jsx";
-import Clientes from "./components/Clientes.jsx";
 import Footer from "./components/Footer.jsx";
+import Home from "./Home.jsx";
+import Control360 from "./Control360.jsx";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <BarraSuperior />
-      <Hero />
-      <Nosotros />
-      <ContactoBanner />
-      <Beneficios />
-      <Clientes />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/control360" element={<Control360 />} />
+      </Routes>
+
       <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 

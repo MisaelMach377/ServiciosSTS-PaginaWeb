@@ -1,9 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { LayoutGrid } from "lucide-react";
 
 const BarraSuperior = () => {
-  const navItems = ["NOSOTROS", "SERVICIOS", "CLIENTES", "CONTACTOS"];
+  const navItems = [
+    { name: "INICIO", path: "/" },
+    { name: "SERVICIOS", path: "/" },
+    { name: "CONTROL 360°", path: "/control360" },
+    { name: "CLIENTES", path: "/" },
+    { name: "CONTACTOS", path: "/" },
+  ];
 
   return (
     <motion.header
@@ -29,15 +36,12 @@ const BarraSuperior = () => {
       <nav>
         <ul style={styles.navList}>
           {navItems.map((item) => (
-            <li key={item}>
-              <motion.a
-                href={`#${item.toLowerCase()}`}
-                style={styles.link}
-                whileHover={{ color: "#4ed5e2", scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {item}
-              </motion.a>
+            <li key={item.name}>
+              <motion.div whileHover={{ color: "#4ed5e2", scale: 1.05 }}>
+                <Link to={item.path} style={styles.link}>
+                  {item.name}
+                </Link>
+              </motion.div>
             </li>
           ))}
         </ul>

@@ -117,7 +117,17 @@ const Footer = () => {
         </p>
         <p>
           Diseñado y desarrollado por
-          <span style={{ color: "#4ed5e2" }}>MachiavelloDev</span>
+          <a
+            href="https://misaelmach377.github.io/MyPortafolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <span style={{ color: "#4ed5e2", cursor: "pointer" }}>
+              {" "}
+              MachiavelloDev
+            </span>
+          </a>{" "}
         </p>
       </div>
     </footer>

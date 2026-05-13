@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid } from "lucide-react";
 import LogoSTS from "../assets/logosistemas.jpg";
 
 const BarraSuperior = () => {
+  const [hoveredPath, setHoveredPath] = useState(null);
+
   const navItems = [
     { name: "INICIO", path: "/#inicio" },
     { name: "NOSOTROS", path: "#nosotros" },
@@ -14,65 +16,88 @@ const BarraSuperior = () => {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", damping: 18, stiffness: 100 }}
       style={styles.header}
     >
-      {/* Sección Logo */}
+      {/* Sección Logo con Glow sutil */}
       <div style={styles.logoContainer}>
-        <img src={LogoSTS} alt="Servicios STS Logo" style={styles.logo} />
+        <div style={styles.logoWrapper}>
+          <img src={LogoSTS} alt="Servicios STS Logo" style={styles.logo} />
+        </div>
         <div style={styles.brandText}>
           <span style={styles.mainName}>SERVICIOS STS</span>
           <span style={styles.tagline}>OPERACIONES LOGÍSTICAS EFICIENTES</span>
         </div>
       </div>
 
-      {/* Navegación con Letras más Grandes y Pro */}
-      <nav>
-        <ul style={styles.navList}>
+      {/* Navegación con Cápsula Flotante (The "Pro" Way) */}
+      <nav style={styles.nav}>
+        <ul style={styles.navList} onMouseLeave={() => setHoveredPath(null)}>
           {navItems.map((item) => (
-            <li key={item.name}>
-              <motion.div
-                whileHover={{ color: "#4ed5e2", y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {item.path.startsWith("#") ? (
-                  <a href={item.path} style={styles.link}>
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link to={item.path} style={styles.link}>
-                    {item.name}
-                  </Link>
+            <li
+              key={item.name}
+              style={styles.navItem}
+              onMouseEnter={() => setHoveredPath(item.path)}
+            >
+              {/* Esta es la cápsula que se mueve detrás del texto */}
+              <AnimatePresence>
+                {hoveredPath === item.path && (
+                  <motion.div
+                    layoutId="nav-glow"
+                    style={styles.navGlow}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
                 )}
-              </motion.div>
+              </AnimatePresence>
+
+              {item.path.startsWith("#") ? (
+                <a
+                  href={item.path}
+                  style={{
+                    ...styles.link,
+                    color: hoveredPath === item.path ? "#1a1a1a" : "#64748b",
+                  }}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  to={item.path}
+                  style={{
+                    ...styles.link,
+                    color: hoveredPath === item.path ? "#1a1a1a" : "#64748b",
+                  }}
+                >
+                  {item.name}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
       </nav>
 
-      {/* Acciones Finales */}
+      {/* Acciones Finales con Efectos de Pulso */}
       <div style={styles.actions}>
         <motion.button
           style={styles.iconBtn}
-          whileHover={{
-            rotate: 90,
-            backgroundColor: "rgba(78, 213, 226, 0.1)",
-          }}
+          whileHover={{ rotate: 90, backgroundColor: "rgba(0,0,0,0.03)" }}
           whileTap={{ scale: 0.9 }}
         >
-          <LayoutGrid size={24} color="#4ed5e2" strokeWidth={2} />
+          <LayoutGrid size={22} color="#0f172a" strokeWidth={1.5} />
         </motion.button>
 
         <motion.button
           style={styles.quoteBtn}
           whileHover={{
-            backgroundColor: "#3bc1ce",
-            boxShadow: "0px 8px 20px rgba(78, 213, 226, 0.3)",
-            y: -2,
+            scale: 1.05,
+            boxShadow: "0 20px 25px -5px rgba(78, 213, 226, 0.4)",
           }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.95 }}
         >
           COTIZAR »
         </motion.button>
@@ -86,11 +111,11 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 6%",
-    height: "90px", // Un poco más alto para que respire el texto grande
-    backgroundColor: "rgba(255, 255, 255, 0.98)",
-    backdropFilter: "blur(15px)",
-    borderBottom: "1px solid rgba(0,0,0,0.06)",
+    padding: "0 5%",
+    height: "100px",
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    backdropFilter: "blur(20px) saturate(180%)", // Efecto Apple ultra premium
+    borderBottom: "1px solid rgba(0,0,0,0.04)",
     position: "sticky",
     top: 0,
     zIndex: 1000,
@@ -98,75 +123,96 @@ const styles = {
   logoContainer: {
     display: "flex",
     alignItems: "center",
-    gap: "15px",
-    cursor: "pointer",
+    gap: "18px",
+  },
+  logoWrapper: {
+    padding: "4px",
+    background: "#fff",
+    borderRadius: "12px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
   logo: {
-    height: "50px", // Logo ligeramente más grande
-    width: "auto",
+    height: "48px",
+    borderRadius: "8px",
   },
   brandText: {
     display: "flex",
     flexDirection: "column",
   },
   mainName: {
-    fontSize: "22px", // Aumentado para más impacto
+    fontSize: "24px",
     fontWeight: "900",
     color: "#0f172a",
-    lineHeight: 1,
-    letterSpacing: "-0.8px",
+    letterSpacing: "-1px",
+    lineHeight: "1.1",
   },
   tagline: {
-    fontSize: "10px",
-    color: "#64748b",
-    fontWeight: "700",
-    letterSpacing: "1.5px",
-    marginTop: "5px",
-    textTransform: "uppercase",
+    fontSize: "11px",
+    color: "#94a3b8",
+    fontWeight: "600",
+    letterSpacing: "2px",
+    marginTop: "2px",
+  },
+  nav: {
+    background: "rgba(0,0,0,0.03)",
+    padding: "6px",
+    borderRadius: "20px",
   },
   navList: {
     display: "flex",
     listStyle: "none",
-    gap: "45px", // Más separación entre items
     margin: 0,
     padding: 0,
+    gap: "8px",
+    position: "relative",
+  },
+  navItem: {
+    position: "relative",
+    padding: "10px 24px",
+    cursor: "pointer",
+  },
+  navGlow: {
+    position: "absolute",
+    inset: 0,
+    backgroundColor: "#fff",
+    borderRadius: "14px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+    zIndex: -1,
   },
   link: {
     textDecoration: "none",
-    color: "#1e293b",
-    fontWeight: "700",
-    fontSize: "14px", // Letra de navegación más legible
-    letterSpacing: "0.8px",
-    display: "inline-block",
-    transition: "color 0.2s ease",
+    fontWeight: "800",
+    fontSize: "13px",
+    letterSpacing: "1px",
+    position: "relative",
+    zIndex: 2,
+    transition: "color 0.3s ease",
   },
   actions: {
     display: "flex",
     alignItems: "center",
-    gap: "25px",
+    gap: "16px",
   },
   iconBtn: {
     background: "none",
     border: "none",
     cursor: "pointer",
-    padding: "10px",
-    borderRadius: "12px",
+    padding: "12px",
+    borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    transition: "all 0.3s ease",
   },
   quoteBtn: {
-    backgroundColor: "#4ed5e2",
+    background: "linear-gradient(135deg, #4ed5e2 0%, #3bc1ce 100%)", // Gradiente pro
     color: "#fff",
     border: "none",
-    padding: "14px 32px", // Botón más robusto
-    borderRadius: "12px", // Bordes más suaves (modernos)
-    fontWeight: "800",
-    fontSize: "14px",
-    letterSpacing: "0.5px",
+    padding: "16px 36px",
+    borderRadius: "16px",
+    fontWeight: "900",
+    fontSize: "15px",
     cursor: "pointer",
-    transition: "all 0.3s ease",
+    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
   },
 };
 

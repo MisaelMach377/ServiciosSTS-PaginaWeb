@@ -2,27 +2,27 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
-// 1. Importa tus imágenes aquí (ajusta el nombre del archivo según tus assets)
+// IMÁGENES
 import fotoLogistica1 from "../assets/hero.png";
 import fotoLogistica2 from "../assets/logosistemas.jpg";
 
-// 2. Ahora el array lee las variables importadas
+// SLIDES
 const slides = [
   {
     id: 1,
-    title: "TRANSPORTE DE CARGA PESADA Y ANCHA A NIVEL NACIONAL",
-    subtitle: "OPERACIONES LOGÍSTICAS EFICIENTES",
+    subtitle: "SOLUCIONES LOGÍSTICAS & REEFER 24/7",
+    title: "MONITOREO, TRANSPORTE Y MANTENIMIENTO DE CONTENEDORES REFRIGERADOS",
     description:
-      "Sabemos que para tu empresa, mover grandes volúmenes de mercancía es una tarea compleja que requiere experiencia y profesionalismo.",
-    image: fotoLogistica1, // Variable de arriba
+      "Especialistas en operaciones logísticas, mantenimiento reefer y transporte de carga para comercio exterior en los principales puertos del Perú.",
+    image: fotoLogistica1,
   },
   {
     id: 2,
-    title: "SOLUCIONES INTEGRALES EN LOGÍSTICA TERRESTRE",
-    subtitle: "SEGURIDAD Y PUNTUALIDAD",
+    subtitle: "OPERACIONES CERTIFICADAS",
+    title: "SOPORTE TÉCNICO ESPECIALIZADO PARA EQUIPOS REEFER Y DRY",
     description:
-      "Nos enfocamos en brindar soluciones a medida para tus necesidades de transporte de carga pesada en todo el país.",
-    image: fotoLogistica2, // Variable de arriba
+      "Contamos con técnicos certificados por Carrier, Thermoking, Daikin y otras marcas líderes para garantizar operaciones seguras y eficientes.",
+    image: fotoLogistica2,
   },
 ];
 
@@ -32,37 +32,54 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 7000);
+
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section style={styles.heroContainer}>
+      {/* LEFT SIDE */}
       <motion.div
         key={`text-${index}`}
-        initial={{ opacity: 0, x: -30 }}
+        initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
         style={styles.textSide}
       >
         <span style={styles.subTitle}>{slides[index].subtitle}</span>
+
         <h1 style={styles.mainTitle}>{slides[index].title}</h1>
+
         <p style={styles.desc}>{slides[index].description}</p>
 
-        <motion.button
-          whileHover={{ scale: 1.05, backgroundColor: "#1a1a1a" }}
-          whileTap={{ scale: 0.95 }}
-          style={styles.ctaButton}
-        >
-          COTIZAR AHORA <ChevronRight size={20} />
-        </motion.button>
+        <div style={styles.buttonContainer}>
+          <motion.button
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: "#0891b2",
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={styles.ctaButton}
+          >
+            SOLICITAR COTIZACIÓN
+            <ChevronRight size={20} />
+          </motion.button>
+        </div>
+
+        {/* INFO EXTRA */}
+        <div style={styles.bottomInfo}>
+          <span>ATENCIÓN 24/7</span>
+          <span>LIMA • CALLAO • PAITA • SALAVERRY</span>
+        </div>
       </motion.div>
 
+      {/* RIGHT SIDE */}
       <div style={styles.imageSide}>
         <AnimatePresence mode="wait">
           <motion.img
             key={slides[index].id}
-            src={slides[index].image} // Aquí lee la imagen del slide actual
+            src={slides[index].image}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
@@ -71,6 +88,10 @@ const Hero = () => {
           />
         </AnimatePresence>
 
+        {/* OVERLAY */}
+        <div style={styles.overlay}></div>
+
+        {/* DOTS */}
         <div style={styles.dotContainer}>
           {slides.map((_, i) => (
             <motion.div
@@ -79,6 +100,7 @@ const Hero = () => {
                 width: i === index ? 35 : 12,
                 opacity: i === index ? 1 : 0.5,
               }}
+              transition={{ duration: 0.3 }}
               style={styles.dot}
             />
           ))}
@@ -88,50 +110,67 @@ const Hero = () => {
   );
 };
 
-// Los estilos se mantienen igual...
 const styles = {
   heroContainer: {
     display: "flex",
-    minHeight: "calc(100vh - 80px)", // Cambia 'height' por 'minHeight'
+    minHeight: "100vh",
     width: "100%",
-    overflow: "visible", // ¡IMPORTANTE! Cambia 'hidden' por 'visible'
+    overflow: "hidden",
+    flexWrap: "wrap",
   },
+
+  // LEFT
   textSide: {
     flex: 1,
-    backgroundColor: "#4ed5e2",
+    minWidth: "320px",
+    backgroundColor: "#0f172a",
     padding: "0 8%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     color: "#fff",
+    position: "relative",
   },
+
   subTitle: {
     fontSize: "13px",
-    fontWeight: "600",
-    letterSpacing: "2px",
+    fontWeight: "700",
+    letterSpacing: "3px",
     marginBottom: "20px",
-    opacity: 0.9,
+    color: "#06b6d4",
+    textTransform: "uppercase",
   },
+
   mainTitle: {
-    fontSize: "clamp(32px, 4vw, 52px)",
+    fontSize: "clamp(38px, 5vw, 64px)",
     fontWeight: "900",
     lineHeight: "1.1",
     marginBottom: "25px",
     textTransform: "uppercase",
+    maxWidth: "750px",
   },
+
   desc: {
-    fontSize: "17px",
-    lineHeight: "1.6",
+    fontSize: "18px",
+    lineHeight: "1.8",
     marginBottom: "40px",
-    maxWidth: "500px",
-    opacity: 0.95,
+    maxWidth: "620px",
+    color: "rgba(255,255,255,0.85)",
   },
+
+  buttonContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    marginBottom: "60px",
+  },
+
   ctaButton: {
-    backgroundColor: "#000",
+    backgroundColor: "#06b6d4",
     color: "#fff",
     border: "none",
-    padding: "18px 35px",
-    borderRadius: "4px",
+    padding: "18px 34px",
+    borderRadius: "6px",
     fontWeight: "800",
     fontSize: "14px",
     display: "flex",
@@ -139,19 +178,44 @@ const styles = {
     gap: "12px",
     cursor: "pointer",
     width: "fit-content",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+    letterSpacing: "1px",
+    boxShadow: "0 10px 25px rgba(6,182,212,0.25)",
+    transition: "0.3s",
   },
+
+  bottomInfo: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    fontSize: "13px",
+    color: "rgba(255,255,255,0.65)",
+    letterSpacing: "2px",
+    textTransform: "uppercase",
+  },
+
+  // RIGHT
   imageSide: {
     flex: 1,
+    minWidth: "320px",
     position: "relative",
-    backgroundColor: "#222",
+    overflow: "hidden",
+    backgroundColor: "#000",
   },
+
   heroImg: {
     width: "100%",
     height: "100%",
     objectFit: "cover",
   },
 
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    background: "rgba(0,0,0,0.35)",
+    zIndex: 1,
+  },
+
+  // DOTS
   dotContainer: {
     position: "absolute",
     bottom: "40px",
@@ -159,7 +223,9 @@ const styles = {
     transform: "translateX(-50%)",
     display: "flex",
     gap: "10px",
+    zIndex: 2,
   },
+
   dot: {
     height: "5px",
     backgroundColor: "#fff",

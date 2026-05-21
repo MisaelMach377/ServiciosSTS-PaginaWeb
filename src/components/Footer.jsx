@@ -1,226 +1,330 @@
 import React from "react";
-import { color, motion } from "framer-motion";
-import { MapPin, Phone, Mail, BookOpen } from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, BookOpen, ArrowRight } from "lucide-react";
+
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+
 import logoBlanco from "../assets/logosistemas.jpg";
 
 const Footer = () => {
   const anioActual = new Date().getFullYear();
 
-  const SocialBtn = ({ children }) => (
-    <motion.a
-      whileHover={{ y: -3, backgroundColor: "#4ed5e2" }}
-      href="#"
-      style={styles.socialIcon}
-    >
-      {children}
-    </motion.a>
-  );
-
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
-        {/* Columna 1: Info y Redes */}
+        {/* LOGO + CONTACTO */}
         <div style={styles.column}>
-          <img src={logoBlanco} alt="TH Logistics" style={styles.logo} />
-          <div style={styles.contactItem}>
-            <MapPin size={18} color="#4ed5e2" style={styles.icon} />
-            <p style={styles.text}>
-              Javier Prado Oeste 757, oficina 1004, Magdalena del Mar, Lima –
-              Perú
-            </p>
-          </div>
-          <div style={styles.contactItem}>
-            <Phone size={18} color="#4ed5e2" style={styles.icon} />
-            <p style={styles.text}>+51 951 306 987</p>
-          </div>
-          <div style={styles.contactItem}>
-            <Mail size={18} color="#4ed5e2" style={styles.icon} />
-            <p style={styles.text}>d.alarcon@thlogistics.pe</p>
-          </div>
+          <img src={logoBlanco} alt="STS Logistics" style={styles.logo} />
 
-          <div style={styles.socialWrapper}>
-            <p style={styles.socialTitle}>Síguenos en:</p>
-            <div style={styles.socialIcons}>
-              <SocialBtn>
-                <FaFacebookF />
-              </SocialBtn>
+          <p style={styles.description}>
+            Soluciones modernas de transporte y logística orientadas a la
+            eficiencia, seguridad y cumplimiento operativo.
+          </p>
 
-              <SocialBtn>
-                <FaLinkedinIn />
-              </SocialBtn>
+          <div style={styles.contactGroup}>
+            <div style={styles.contactItem}>
+              <MapPin size={18} color="#4ed5e2" />
+              <p style={styles.text}>
+                Javier Prado Oeste 757, Magdalena del Mar, Lima – Perú
+              </p>
             </div>
+
+            <div style={styles.contactItem}>
+              <Phone size={18} color="#4ed5e2" />
+              <p style={styles.text}>+51 923 220 859</p>
+            </div>
+
+            <div style={styles.contactItem}>
+              <Mail size={18} color="#4ed5e2" />
+              <p style={styles.text}>gerencia@servicios-sts.com</p>
+            </div>
+          </div>
+
+          <div style={styles.socials}>
+            <SocialBtn>
+              <FaFacebookF />
+            </SocialBtn>
+
+            <SocialBtn>
+              <FaLinkedinIn />
+            </SocialBtn>
           </div>
         </div>
 
-        {/* Columna 2: Servicios */}
+        {/* SERVICIOS */}
         <div style={styles.column}>
-          <h4 style={styles.title}>SERVICIOS</h4>
+          <h3 style={styles.title}>SERVICIOS</h3>
+
           <ul style={styles.list}>
             {[
               "Transporte de carga pesada",
               "Carga sobredimensionada",
-              "Transporte de carga peligrosa",
-              "Transporte de carga refrigerada",
-              "Conductores asignados",
+              "Carga refrigerada",
+              "Distribución logística",
+              "Operaciones especializadas",
             ].map((item) => (
               <li key={item} style={styles.listItem}>
+                <ArrowRight size={15} color="#4ed5e2" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Columna 3: Políticas */}
+        {/* COMPROMISO */}
         <div style={styles.column}>
-          <h4 style={styles.title}>POLÍTICAS DE COMPROMISO</h4>
+          <h3 style={styles.title}>COMPROMISO</h3>
+
           <ul style={styles.list}>
             {[
-              "Responsabilidad Empresarial",
-              "Sistema de Gestión SSOMA",
-              "Seguridad, Salud y Bienestar",
-              "Certificación de Homologación",
+              "Seguridad Operativa",
+              "Gestión SSOMA",
+              "Cumplimiento y Calidad",
+              "Atención Personalizada",
+              "Mejora Continua",
             ].map((item) => (
               <li key={item} style={styles.listItem}>
+                <ArrowRight size={15} color="#4ed5e2" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Columna 4: Consulta Gratuita */}
+        {/* CONTACTO */}
         <div style={styles.column}>
-          <h4 style={styles.title}>CONSULTA GRATUITA</h4>
-          <div style={styles.phoneBadge}>
-            <div style={styles.phoneIconBox}>
-              <Phone size={20} color="#fff" fill="#fff" />
+          <h3 style={styles.title}>CONTACTO DIRECTO</h3>
+
+          <div style={styles.phoneCard}>
+            <div style={styles.phoneIcon}>
+              <Phone size={18} color="#fff" />
             </div>
-            <span style={styles.phoneNumber}>+51 951 306 987</span>
+
+            <div>
+              <p style={styles.phoneLabel}>Llámanos</p>
+              <span style={styles.phoneNumber}>+51 960 632 201</span>
+            </div>
           </div>
+
           <p style={styles.consultText}>
-            Si necesita recibir una propuesta a la brevedad posible, por favor,
-            póngase en contacto con nosotros.
+            Nuestro equipo está listo para brindarte atención rápida y
+            soluciones adaptadas a tus necesidades logísticas.
           </p>
-          <div style={styles.reclamaciones}>
-            <BookOpen size={30} color="#fff" />
-            <span style={styles.reclamasText}>
-              LIBRO DE RECLAMACIONES VIRTUAL
-            </span>
-          </div>
+
+          <motion.div whileHover={{ y: -4 }} style={styles.reclamaciones}>
+            <BookOpen size={22} color="#fff" />
+
+            <span style={styles.reclamasText}>LIBRO DE RECLAMACIONES</span>
+          </motion.div>
         </div>
       </div>
 
-      {/* Barra Inferior de Copyright */}
+      {/* COPYRIGHT */}
       <div style={styles.bottomBar}>
+        <p>© {anioActual} STS Logistics · Todos los derechos reservados</p>
+
         <p>
-          Copyright ©{anioActual} | Todos los derechos reservados | TH Logistics
-        </p>
-        <p>
-          Diseñado y desarrollado por
+          Diseñado y desarrollado por{" "}
           <a
             href="https://misaelmach377.github.io/MyPortafolio/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
+            style={styles.devLink}
           >
-            <span style={{ color: "#4ed5e2", cursor: "pointer" }}>
-              {" "}
-              MachiavelloDev
-            </span>
-          </a>{" "}
+            MachiavelloDev
+          </a>
         </p>
       </div>
     </footer>
   );
 };
 
-// Componente pequeño para botones sociales
-const SocialBtn = ({ Icon }) => (
+const SocialBtn = ({ children }) => (
   <motion.a
-    whileHover={{ y: -3, backgroundColor: "#4ed5e2" }}
+    whileHover={{
+      y: -4,
+      backgroundColor: "#4ed5e2",
+    }}
     href="#"
     style={styles.socialIcon}
   >
-    <Icon size={18} color="#fff" />
+    {children}
   </motion.a>
 );
 
 const styles = {
   footer: {
-    backgroundColor: "#1a1a1a",
+    background: "linear-gradient(to bottom, #0f172a 0%, #020617 100%)",
     color: "#fff",
-    padding: "80px 5% 20px 5%",
-    fontFamily: "sans-serif",
+    padding: "90px 5% 25px 5%",
   },
+
   container: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: "40px",
-    maxWidth: "1200px",
+    maxWidth: "1250px",
     margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "45px",
   },
-  column: { display: "flex", flexDirection: "column", gap: "15px" },
-  logo: { width: "180px", marginBottom: "20px" },
-  title: {
-    fontSize: "16px",
-    fontWeight: "800",
-    marginBottom: "10px",
-    letterSpacing: "1px",
-  },
-  contactItem: { display: "flex", gap: "10px", alignItems: "flex-start" },
-  text: { fontSize: "13px", color: "#ccc", lineHeight: "1.5", margin: 0 },
-  list: { listStyle: "none", padding: 0, margin: 0 },
-  listItem: {
-    fontSize: "13px",
-    color: "#ccc",
-    padding: "8px 0",
-    borderBottom: "1px solid #333",
-    cursor: "pointer",
-  },
-  socialWrapper: { marginTop: "20px" },
-  socialTitle: { fontSize: "12px", fontWeight: "700", marginBottom: "10px" },
-  socialIcons: { display: "flex", gap: "10px" },
-  socialIcon: {
-    backgroundColor: "#fdfbfb",
-    color: "blue",
-    padding: "8px",
-    borderRadius: "4px",
-    display: "flex",
-    alignItems: "center",
-  },
-  phoneBadge: {
-    display: "flex",
-    alignItems: "center",
-    border: "1px solid #4ed5e2",
-    borderRadius: "4px",
-    overflow: "hidden",
-  },
-  phoneIconBox: { backgroundColor: "#4ed5e2", padding: "10px" },
-  phoneNumber: { padding: "0 15px", fontWeight: "700", fontSize: "15px" },
-  consultText: {
-    fontSize: "13px",
-    color: "#888",
-    marginTop: "15px",
-    fontStyle: "italic",
-  },
-  reclamaciones: {
-    marginTop: "20px",
+
+  column: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    gap: "5px",
   },
-  reclamasText: { fontSize: "10px", fontWeight: "700", textAlign: "center" },
+
+  logo: {
+    width: "170px",
+    marginBottom: "24px",
+  },
+
+  description: {
+    color: "#94a3b8",
+    lineHeight: "1.9",
+    fontSize: "14px",
+    marginBottom: "28px",
+  },
+
+  title: {
+    fontSize: "17px",
+    fontWeight: "800",
+    marginBottom: "24px",
+    letterSpacing: "0.5px",
+    color: "#fff",
+  },
+
+  contactGroup: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "18px",
+  },
+
+  contactItem: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "12px",
+  },
+
+  text: {
+    color: "#cbd5e1",
+    fontSize: "14px",
+    lineHeight: "1.7",
+    margin: 0,
+  },
+
+  socials: {
+    display: "flex",
+    gap: "12px",
+    marginTop: "30px",
+  },
+
+  socialIcon: {
+    width: "42px",
+    height: "42px",
+    borderRadius: "14px",
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    cursor: "pointer",
+    transition: "0.3s ease",
+    textDecoration: "none",
+  },
+
+  list: {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+  },
+
+  listItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    color: "#cbd5e1",
+    fontSize: "14px",
+    transition: "0.3s ease",
+    cursor: "pointer",
+  },
+
+  phoneCard: {
+    display: "flex",
+    alignItems: "center",
+    gap: "15px",
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: "20px",
+    padding: "18px",
+    marginBottom: "22px",
+  },
+
+  phoneIcon: {
+    width: "50px",
+    height: "50px",
+    borderRadius: "16px",
+    background: "linear-gradient(135deg, #4ed5e2, #0ea5e9)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  phoneLabel: {
+    margin: 0,
+    color: "#94a3b8",
+    fontSize: "13px",
+  },
+
+  phoneNumber: {
+    fontSize: "18px",
+    fontWeight: "800",
+    color: "#fff",
+  },
+
+  consultText: {
+    color: "#94a3b8",
+    lineHeight: "1.8",
+    fontSize: "14px",
+  },
+
+  reclamaciones: {
+    marginTop: "28px",
+    background: "linear-gradient(135deg, #4ed5e2, #0891b2)",
+    borderRadius: "18px",
+    padding: "16px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    cursor: "pointer",
+  },
+
+  reclamasText: {
+    fontSize: "12px",
+    fontWeight: "800",
+    letterSpacing: "0.5px",
+  },
+
   bottomBar: {
-    marginTop: "60px",
-    borderTop: "1px solid #333",
-    paddingTop: "20px",
+    maxWidth: "1250px",
+    margin: "70px auto 0 auto",
+    paddingTop: "24px",
+    borderTop: "1px solid rgba(255,255,255,0.08)",
     display: "flex",
     justifyContent: "space-between",
-    fontSize: "11px",
-    color: "#666",
     flexWrap: "wrap",
-    gap: "10px",
+    gap: "12px",
+    color: "#64748b",
+    fontSize: "13px",
+  },
+
+  devLink: {
+    color: "#4ed5e2",
+    textDecoration: "none",
+    fontWeight: "700",
   },
 };
 

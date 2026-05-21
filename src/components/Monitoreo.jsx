@@ -17,13 +17,17 @@ import pruebaCorreo from "../assets/PruebaCorreo-ServiciosSTS.jfif";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const MonitoreoReal = () => {
   return (
     <div style={styles.pageWrapper}>
-      {/* SECCIÓN 1: HERO IMPACTANTE (FONDO #4ed5e2 + ANIMACIÓN) */}
+      {/* HERO */}
       <motion.section
         initial={{ backgroundColor: "#4ed5e2" }}
         animate={{
@@ -37,10 +41,11 @@ const MonitoreoReal = () => {
         style={styles.heroSection}
       >
         <div style={styles.bgGridLight}></div>
+
         <div style={styles.container}>
           <div style={styles.heroCenterLayout}>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               style={styles.heroContentCenter}
@@ -48,32 +53,53 @@ const MonitoreoReal = () => {
               <div style={styles.heroBadgeWhite}>
                 <Activity size={14} color="#000" />
                 <span style={styles.heroBadgeTextDark}>
-                  LIVE TELEMETRY SYSTEM
+                  REAL-TIME CONTROL CENTER
                 </span>
               </div>
+
               <h1 style={styles.heroTitleLarge}>
-                Control <span style={styles.heroTitleStroke}>360°</span>
+                Centro de{" "}
+                <span style={styles.heroTitleStroke}>Control 360°</span>
               </h1>
+
               <p style={styles.heroSubtitleWhite}>
-                Monitoreo avanzado y trazabilidad total para operaciones
-                logísticas de alta exigencia. Una infraestructura diseñada para
-                el control absoluto.
+                Plataforma avanzada de monitoreo y trazabilidad diseñada para
+                operaciones logísticas de alta exigencia, con control total en
+                tiempo real.
               </p>
+
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100px" }}
                 transition={{ delay: 0.5, duration: 1 }}
                 style={styles.titleUnderlineWhite}
-              ></motion.div>
+              />
+
+              {/* STATS */}
+              <div style={styles.statsRow}>
+                <div style={styles.statItem}>
+                  <h3 style={styles.statNumber}>24/7</h3>
+                  <span style={styles.statLabel}>Monitoreo</span>
+                </div>
+
+                <div style={styles.statItem}>
+                  <h3 style={styles.statNumber}>100%</h3>
+                  <span style={styles.statLabel}>Trazabilidad</span>
+                </div>
+
+                <div style={styles.statItem}>
+                  <h3 style={styles.statNumber}>GPS</h3>
+                  <span style={styles.statLabel}>Tiempo Real</span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Decoración inferior para suavizar la transición */}
         <div style={styles.heroCurve}></div>
       </motion.section>
 
-      {/* SECCIÓN 2: METODOLOGÍA */}
+      {/* METODOLOGÍA */}
       <section style={styles.methodologySection}>
         <div style={styles.container}>
           <motion.div
@@ -86,28 +112,32 @@ const MonitoreoReal = () => {
             <div style={styles.cardContent}>
               <div style={styles.badgeLine}>
                 <span style={styles.methodTag}>METODOLOGÍA STS</span>
+
                 <motion.div
                   animate={{ opacity: [1, 0.4, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
                   style={styles.statusDot}
                 />
               </div>
+
               <h2 style={styles.methodTitle}>¿Cómo trabajamos?</h2>
+
               <p style={styles.methodText}>
-                Servicios STS opera bajo un{" "}
-                <strong>sistema interno propietario</strong> diseñado para
-                centralizar la telemetría. Obtenemos toda la información de tu
-                transporte de manera segura, íntegra y en tiempo real.
+                Servicios STS opera mediante un sistema propietario de control
+                logístico capaz de centralizar telemetría, monitoreo GPS,
+                historial de eventos y automatización operativa en una sola
+                plataforma.
               </p>
             </div>
+
             <div style={styles.cardVisual}>
-              <Database size={32} color="#4ed5e2" strokeWidth={1.5} />
+              <Database size={34} color="#4ed5e2" strokeWidth={1.5} />
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* SECCIÓN 3: DASHBOARD PRINCIPAL */}
+      {/* DASHBOARD */}
       <section style={styles.dashboardSection}>
         <div style={styles.container}>
           <motion.div
@@ -120,10 +150,11 @@ const MonitoreoReal = () => {
             <h2 style={styles.title}>
               OPERACIÓN EN <span style={styles.highlight}>VIVO 24/7</span>
             </h2>
+
             <p style={styles.proDescription}>
-              Nuestra plataforma centraliza flujos de datos complejos en una
-              interfaz intuitiva, permitiendo una visibilidad absoluta sobre
-              cada unidad, ruta y evento crítico dentro de la cadena logística.
+              Nuestra plataforma centraliza información crítica en tiempo real,
+              permitiendo visibilidad absoluta sobre rutas, unidades y eventos
+              estratégicos dentro de toda la operación logística.
             </p>
           </motion.div>
 
@@ -131,7 +162,7 @@ const MonitoreoReal = () => {
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
             style={styles.mapCard}
           >
             <div style={styles.browserBar}>
@@ -139,23 +170,27 @@ const MonitoreoReal = () => {
                 <div
                   style={{ ...styles.dot, backgroundColor: "#ff5f57" }}
                 ></div>
+
                 <div
                   style={{ ...styles.dot, backgroundColor: "#febc2e" }}
                 ></div>
+
                 <div
                   style={{ ...styles.dot, backgroundColor: "#28c840" }}
                 ></div>
               </div>
+
               <div style={styles.browserAddress}>
-                portal.velogistics.com/live-tracking
+                Portal Interno de Servicios STS
               </div>
             </div>
+
             <img src={dashboardMapa} alt="Dashboard" style={styles.imgMain} />
           </motion.div>
         </div>
       </section>
 
-      {/* SECCIÓN 4: GRID DE SERVICIOS */}
+      {/* GRID */}
       <section style={styles.gridSection}>
         <div style={styles.container}>
           <motion.div
@@ -166,52 +201,60 @@ const MonitoreoReal = () => {
             style={styles.gridIntro}
           >
             <h3 style={styles.gridStatement}>
-              Cubrimos cada necesidad de nuestros clientes en tiempo real
+              Tecnología aplicada al control operativo en tiempo real
             </h3>
+
             <div style={styles.shortDivider}></div>
           </motion.div>
 
           <div style={styles.secondaryGrid}>
             <Card
               delay={0.1}
-              tag="AUTOMATION"
-              title="Email Reports"
+              tag="AUTOMATIZACIÓN"
+              title="Alertas Inteligentes"
               icon={<Mail size={18} color="#4ed5e2" />}
             >
               <img src={pruebaCorreo} alt="Aviso" style={styles.imgSmall} />
+
               <p style={styles.cardDesc}>
-                Notificaciones inteligentes vía Power Automate.
+                Notificaciones automáticas mediante flujos inteligentes y
+                alertas operativas en tiempo real.
               </p>
             </Card>
 
             <Card
               delay={0.2}
-              tag="GEOSPATIAL"
+              tag="GEOCERCAS"
               title="Geocercas GPS"
               icon={<MapIcon size={18} color="#4ed5e2" />}
             >
               <div style={styles.geoPlaceholder}>
-                <Navigation size={20} color="#4ed5e2" />
+                <Navigation size={22} color="#4ed5e2" />
               </div>
+
               <p style={styles.cardDesc}>
-                Control perimetral con alertas de desviación activa.
+                Supervisión perimetral con alertas dinámicas ante desviaciones o
+                incidencias de ruta.
               </p>
             </Card>
 
             <Card
               delay={0.3}
-              tag="CLOUD"
-              title="Azure History"
+              tag="NUBE"
+              title="Historial Centralizado"
               icon={<History size={18} color="#4ed5e2" />}
             >
               <div style={styles.historyList}>
                 <div style={styles.historyItem}>
-                  • Logs de seguridad activos
+                  • Historial de seguridad activos
                 </div>
-                <div style={styles.historyItem}>• Respaldos en SQL Server</div>
+
+                <div style={styles.historyItem}>• Historial de tus rutas</div>
               </div>
+
               <p style={styles.cardDesc}>
-                Trazabilidad total en infraestructura segura.
+                Infraestructura segura con respaldo y trazabilidad total de cada
+                evento registrado.
               </p>
             </Card>
           </div>
@@ -224,11 +267,15 @@ const MonitoreoReal = () => {
           >
             <div style={styles.statusGroup}>
               <Globe size={14} color="#94a3b8" />
-              <span style={styles.statusText}>Alcance Global</span>
+
+              <span style={styles.statusText}>Cobertura Nacional</span>
             </div>
+
             <div style={styles.dividerDot}></div>
+
             <div style={styles.statusGroup}>
               <ShieldCheck size={14} color="#4ed5e2" />
+
               <span style={styles.statusText}>Seguridad Certificada</span>
             </div>
           </motion.div>
@@ -244,14 +291,20 @@ const Card = ({ tag, title, icon, children, delay }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    whileHover={{ y: -8, transition: { duration: 0.2 } }}
+    whileHover={{
+      y: -8,
+      boxShadow: "0 30px 60px rgba(0,0,0,0.08)",
+    }}
     style={styles.infoCard}
   >
     <div style={styles.cardHeader}>
       {icon}
+
       <span style={styles.cardTag}>{tag}</span>
     </div>
+
     <h4 style={styles.cardTitle}>{title}</h4>
+
     {children}
   </motion.div>
 );
@@ -262,9 +315,13 @@ const styles = {
     paddingBottom: "60px",
     overflowX: "hidden",
   },
-  container: { maxWidth: "1100px", margin: "0 auto", padding: "0 20px" },
 
-  // NUEVO HERO ESTILO "FULL IMPACT"
+  container: {
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 20px",
+  },
+
   heroSection: {
     padding: "200px 0 150px 0",
     position: "relative",
@@ -273,22 +330,28 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
+
   bgGridLight: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `radial-gradient(rgba(255,255,255,0.3) 1.5px, transparent 1.5px)`,
+    inset: 0,
+    backgroundImage:
+      "radial-gradient(rgba(255,255,255,0.3) 1.5px, transparent 1.5px)",
     backgroundSize: "50px 50px",
     zIndex: 0,
   },
-  heroCenterLayout: { position: "relative", zIndex: 1, maxWidth: "800px" },
+
+  heroCenterLayout: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: "900px",
+  },
+
   heroContentCenter: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
+
   heroBadgeWhite: {
     display: "flex",
     alignItems: "center",
@@ -299,37 +362,70 @@ const styles = {
     marginBottom: "30px",
     boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
   },
+
   heroBadgeTextDark: {
     fontSize: "11px",
     fontWeight: "800",
     color: "#000",
     letterSpacing: "1px",
   },
+
   heroTitleLarge: {
-    fontSize: "90px",
+    fontSize: "92px",
     fontWeight: "900",
     color: "#fff",
     letterSpacing: "-5px",
-    lineHeight: "0.85",
+    lineHeight: "0.9",
     margin: 0,
   },
+
   heroTitleStroke: {
     color: "transparent",
     WebkitTextStroke: "1.5px white",
   },
+
   heroSubtitleWhite: {
     fontSize: "22px",
     color: "rgba(255,255,255,0.9)",
     marginTop: "30px",
-    lineHeight: "1.5",
+    lineHeight: "1.6",
     fontWeight: "500",
+    maxWidth: "760px",
   },
+
   titleUnderlineWhite: {
     height: "6px",
     backgroundColor: "#000",
     marginTop: "40px",
     borderRadius: "10px",
   },
+
+  statsRow: {
+    display: "flex",
+    gap: "60px",
+    marginTop: "55px",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+
+  statItem: {
+    textAlign: "center",
+  },
+
+  statNumber: {
+    fontSize: "34px",
+    fontWeight: "900",
+    color: "#fff",
+    margin: 0,
+  },
+
+  statLabel: {
+    color: "rgba(255,255,255,0.85)",
+    fontSize: "14px",
+    letterSpacing: "1px",
+    textTransform: "uppercase",
+  },
+
   heroCurve: {
     position: "absolute",
     bottom: -1,
@@ -340,8 +436,11 @@ const styles = {
     clipPath: "ellipse(70% 100% at 50% 100%)",
   },
 
-  // METODOLOGÍA
-  methodologySection: { padding: "100px 0", backgroundColor: "#fff" },
+  methodologySection: {
+    padding: "100px 0",
+    backgroundColor: "#fff",
+  },
+
   methodologyCard: {
     display: "flex",
     alignItems: "center",
@@ -349,42 +448,48 @@ const styles = {
     backgroundColor: "#fff",
     padding: "50px",
     borderRadius: "32px",
-    border: "1px solid #f0f0f0",
+    border: "1px solid rgba(15,23,42,0.06)",
     boxShadow: "0 20px 60px rgba(0,0,0,0.03)",
   },
+
   badgeLine: {
     display: "flex",
     alignItems: "center",
     gap: "10px",
     marginBottom: "15px",
   },
+
   methodTag: {
     fontSize: "11px",
     fontWeight: "800",
     color: "#94a3b8",
     letterSpacing: "2px",
   },
+
   statusDot: {
     width: "8px",
     height: "8px",
     backgroundColor: "#4ed5e2",
     borderRadius: "50%",
   },
+
   methodTitle: {
     fontSize: "34px",
     fontWeight: "800",
     color: "#111",
     margin: "0 0 24px",
   },
+
   methodText: {
     fontSize: "18px",
     color: "#64748b",
     maxWidth: "680px",
     lineHeight: "1.8",
   },
+
   cardVisual: {
-    width: "80px",
-    height: "80px",
+    width: "90px",
+    height: "90px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -392,16 +497,26 @@ const styles = {
     borderRadius: "24px",
   },
 
-  // DASHBOARD
-  dashboardSection: { padding: "80px 0" },
-  header: { textAlign: "center", marginBottom: "60px" },
+  dashboardSection: {
+    padding: "80px 0",
+  },
+
+  header: {
+    textAlign: "center",
+    marginBottom: "60px",
+  },
+
   title: {
-    fontSize: "40px",
+    fontSize: "42px",
     fontWeight: "800",
     color: "#111",
     letterSpacing: "-1px",
   },
-  highlight: { color: "#4ed5e2" },
+
+  highlight: {
+    color: "#4ed5e2",
+  },
+
   proDescription: {
     color: "#64748b",
     fontSize: "19px",
@@ -410,12 +525,14 @@ const styles = {
     margin: "20px auto 0",
     lineHeight: "1.7",
   },
+
   mapCard: {
-    borderRadius: "24px",
-    border: "1px solid #eee",
+    borderRadius: "28px",
+    border: "1px solid rgba(15,23,42,0.06)",
     overflow: "hidden",
     boxShadow: "0 40px 80px rgba(0,0,0,0.06)",
   },
+
   browserBar: {
     backgroundColor: "#fafafa",
     padding: "18px 28px",
@@ -424,21 +541,47 @@ const styles = {
     gap: "28px",
     borderBottom: "1px solid #eee",
   },
-  dots: { display: "flex", gap: "8px" },
-  dot: { width: "11px", height: "11px", borderRadius: "50%" },
-  browserAddress: { fontSize: "13px", color: "#94a3b8", opacity: 0.7 },
-  imgMain: { width: "100%", display: "block" },
 
-  // GRID
-  gridSection: { padding: "100px 0", backgroundColor: "#fcfcfc" },
-  gridIntro: { textAlign: "center", marginBottom: "60px" },
+  dots: {
+    display: "flex",
+    gap: "8px",
+  },
+
+  dot: {
+    width: "11px",
+    height: "11px",
+    borderRadius: "50%",
+  },
+
+  browserAddress: {
+    fontSize: "13px",
+    color: "#94a3b8",
+    opacity: 0.7,
+  },
+
+  imgMain: {
+    width: "100%",
+    display: "block",
+  },
+
+  gridSection: {
+    padding: "100px 0",
+    backgroundColor: "#f8fafc",
+  },
+
+  gridIntro: {
+    textAlign: "center",
+    marginBottom: "60px",
+  },
+
   gridStatement: {
-    fontSize: "26px",
+    fontSize: "28px",
     fontWeight: "700",
     color: "#111",
-    maxWidth: "650px",
+    maxWidth: "700px",
     margin: "0 auto",
   },
+
   shortDivider: {
     width: "35px",
     height: "4px",
@@ -446,37 +589,54 @@ const styles = {
     margin: "20px auto 0",
     borderRadius: "2px",
   },
+
   secondaryGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
     gap: "35px",
   },
+
   infoCard: {
     padding: "35px",
     backgroundColor: "#fff",
-    border: "1px solid #eee",
+    border: "1px solid rgba(15,23,42,0.06)",
     borderRadius: "28px",
+    transition: "all 0.35s ease",
   },
+
   cardHeader: {
     display: "flex",
     alignItems: "center",
     gap: "14px",
     marginBottom: "25px",
   },
-  cardTag: { fontSize: "11px", fontWeight: "800", color: "#cbd5e1" },
+
+  cardTag: {
+    fontSize: "11px",
+    fontWeight: "800",
+    color: "#cbd5e1",
+  },
+
   cardTitle: {
     fontSize: "22px",
     fontWeight: "800",
     color: "#111",
     marginBottom: "18px",
   },
-  cardDesc: { fontSize: "15px", color: "#64748b", lineHeight: "1.6" },
+
+  cardDesc: {
+    fontSize: "15px",
+    color: "#64748b",
+    lineHeight: "1.6",
+  },
+
   imgSmall: {
     width: "100%",
     borderRadius: "14px",
     marginBottom: "20px",
     border: "1px solid #f0f0f0",
   },
+
   geoPlaceholder: {
     height: "90px",
     backgroundColor: "#f9f9f9",
@@ -486,8 +646,16 @@ const styles = {
     justifyContent: "center",
     marginBottom: "20px",
   },
-  historyList: { marginBottom: "20px" },
-  historyItem: { fontSize: "13px", color: "#94a3b8", marginBottom: "8px" },
+
+  historyList: {
+    marginBottom: "20px",
+  },
+
+  historyItem: {
+    fontSize: "13px",
+    color: "#94a3b8",
+    marginBottom: "8px",
+  },
 
   footerStatus: {
     marginTop: "80px",
@@ -498,11 +666,17 @@ const styles = {
     padding: "20px",
     backgroundColor: "#fff",
     borderRadius: "100px",
-    border: "1px solid #f0f0f0",
+    border: "1px solid rgba(15,23,42,0.06)",
     width: "fit-content",
     margin: "80px auto 0",
   },
-  statusGroup: { display: "flex", alignItems: "center", gap: "10px" },
+
+  statusGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  },
+
   statusText: {
     fontSize: "12px",
     fontWeight: "600",
@@ -510,6 +684,7 @@ const styles = {
     textTransform: "uppercase",
     letterSpacing: "0.5px",
   },
+
   dividerDot: {
     width: "4px",
     height: "4px",

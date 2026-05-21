@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid } from "lucide-react";
+import { Menu, ArrowUpRight } from "lucide-react";
+
 import LogoSTS from "../assets/logosistemas.jpg";
 
 const BarraSuperior = () => {
@@ -18,21 +19,29 @@ const BarraSuperior = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: "spring", damping: 18, stiffness: 100 }}
+      transition={{
+        type: "spring",
+        damping: 18,
+        stiffness: 100,
+      }}
       style={styles.header}
     >
-      {/* Sección Logo con Glow sutil */}
+      {/* LOGO */}
       <div style={styles.logoContainer}>
         <div style={styles.logoWrapper}>
-          <img src={LogoSTS} alt="Servicios STS Logo" style={styles.logo} />
+          <img src={LogoSTS} alt="STS Logistics" style={styles.logo} />
         </div>
+
         <div style={styles.brandText}>
           <span style={styles.mainName}>SERVICIOS STS</span>
-          <span style={styles.tagline}>OPERACIONES LOGÍSTICAS EFICIENTES</span>
+
+          <span style={styles.tagline}>
+            Más que un proveedor, un socio estratégico{" "}
+          </span>
         </div>
       </div>
 
-      {/* Navegación con Cápsula Flotante (The "Pro" Way) */}
+      {/* NAV */}
       <nav style={styles.nav}>
         <ul style={styles.navList} onMouseLeave={() => setHoveredPath(null)}>
           {navItems.map((item) => (
@@ -41,16 +50,19 @@ const BarraSuperior = () => {
               style={styles.navItem}
               onMouseEnter={() => setHoveredPath(item.path)}
             >
-              {/* Esta es la cápsula que se mueve detrás del texto */}
               <AnimatePresence>
                 {hoveredPath === item.path && (
                   <motion.div
-                    layoutId="nav-glow"
+                    layoutId="navbar-hover"
                     style={styles.navGlow}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.2,
+                      duration: 0.5,
+                    }}
                   />
                 )}
               </AnimatePresence>
@@ -60,7 +72,7 @@ const BarraSuperior = () => {
                   href={item.path}
                   style={{
                     ...styles.link,
-                    color: hoveredPath === item.path ? "#1a1a1a" : "#64748b",
+                    color: hoveredPath === item.path ? "#0f172a" : "#64748b",
                   }}
                 >
                   {item.name}
@@ -70,7 +82,7 @@ const BarraSuperior = () => {
                   to={item.path}
                   style={{
                     ...styles.link,
-                    color: hoveredPath === item.path ? "#1a1a1a" : "#64748b",
+                    color: hoveredPath === item.path ? "#0f172a" : "#64748b",
                   }}
                 >
                   {item.name}
@@ -81,25 +93,30 @@ const BarraSuperior = () => {
         </ul>
       </nav>
 
-      {/* Acciones Finales con Efectos de Pulso */}
+      {/* ACTIONS */}
       <div style={styles.actions}>
         <motion.button
+          whileHover={{
+            rotate: 90,
+            backgroundColor: "rgba(15,23,42,0.05)",
+          }}
+          whileTap={{ scale: 0.92 }}
           style={styles.iconBtn}
-          whileHover={{ rotate: 90, backgroundColor: "rgba(0,0,0,0.03)" }}
-          whileTap={{ scale: 0.9 }}
         >
-          <LayoutGrid size={22} color="#0f172a" strokeWidth={1.5} />
+          <Menu size={22} color="#0f172a" strokeWidth={2} />
         </motion.button>
 
         <motion.button
-          style={styles.quoteBtn}
           whileHover={{
-            scale: 1.05,
-            boxShadow: "0 20px 25px -5px rgba(78, 213, 226, 0.4)",
+            y: -3,
+            scale: 1.03,
+            boxShadow: "0 18px 35px rgba(78,213,226,0.35)",
           }}
           whileTap={{ scale: 0.95 }}
+          style={styles.quoteBtn}
         >
-          COTIZAR »
+          COTIZAR
+          <ArrowUpRight size={18} />
         </motion.button>
       </div>
     </motion.header>
@@ -108,56 +125,80 @@ const BarraSuperior = () => {
 
 const styles = {
   header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0 5%",
-    height: "100px",
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-    backdropFilter: "blur(20px) saturate(180%)", // Efecto Apple ultra premium
-    borderBottom: "1px solid rgba(0,0,0,0.04)",
     position: "sticky",
     top: 0,
     zIndex: 1000,
+
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+
+    padding: "0 5%",
+    height: "95px",
+
+    background: "rgba(255,255,255,0.72)",
+    backdropFilter: "blur(18px) saturate(180%)",
+
+    borderBottom: "1px solid rgba(15,23,42,0.05)",
   },
+
   logoContainer: {
     display: "flex",
     alignItems: "center",
     gap: "18px",
   },
+
   logoWrapper: {
-    padding: "4px",
+    width: "58px",
+    height: "58px",
+
+    borderRadius: "18px",
+    overflow: "hidden",
+
     background: "#fff",
-    borderRadius: "12px",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    boxShadow: "0 10px 25px rgba(15,23,42,0.08)",
+    border: "1px solid rgba(15,23,42,0.05)",
   },
+
   logo: {
-    height: "48px",
-    borderRadius: "8px",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
+
   brandText: {
     display: "flex",
     flexDirection: "column",
   },
+
   mainName: {
-    fontSize: "24px",
+    fontSize: "25px",
     fontWeight: "900",
     color: "#0f172a",
     letterSpacing: "-1px",
-    lineHeight: "1.1",
+    lineHeight: "1",
   },
+
   tagline: {
     fontSize: "11px",
     color: "#94a3b8",
-    fontWeight: "600",
+    fontWeight: "700",
     letterSpacing: "2px",
-    marginTop: "2px",
+    marginTop: "4px",
   },
+
   nav: {
-    background: "rgba(0,0,0,0.03)",
-    padding: "6px",
-    borderRadius: "20px",
+    background: "rgba(15,23,42,0.04)",
+    padding: "7px",
+    borderRadius: "22px",
+    border: "1px solid rgba(15,23,42,0.04)",
   },
+
   navList: {
     display: "flex",
     listStyle: "none",
@@ -166,53 +207,84 @@ const styles = {
     gap: "8px",
     position: "relative",
   },
+
   navItem: {
     position: "relative",
-    padding: "10px 24px",
+    padding: "12px 24px",
     cursor: "pointer",
   },
+
   navGlow: {
     position: "absolute",
     inset: 0,
-    backgroundColor: "#fff",
-    borderRadius: "14px",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+
+    background: "#fff",
+
+    borderRadius: "16px",
+
+    boxShadow: "0 8px 20px rgba(15,23,42,0.06)",
+
     zIndex: -1,
   },
+
   link: {
     textDecoration: "none",
     fontWeight: "800",
     fontSize: "13px",
     letterSpacing: "1px",
+
+    transition: "0.3s ease",
+
     position: "relative",
     zIndex: 2,
-    transition: "color 0.3s ease",
   },
+
   actions: {
     display: "flex",
     alignItems: "center",
     gap: "16px",
   },
+
   iconBtn: {
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    padding: "12px",
-    borderRadius: "50%",
+    width: "48px",
+    height: "48px",
+
+    borderRadius: "16px",
+
+    border: "1px solid rgba(15,23,42,0.05)",
+    background: "transparent",
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-  quoteBtn: {
-    background: "linear-gradient(135deg, #4ed5e2 0%, #3bc1ce 100%)", // Gradiente pro
-    color: "#fff",
-    border: "none",
-    padding: "16px 36px",
-    borderRadius: "16px",
-    fontWeight: "900",
-    fontSize: "15px",
+
     cursor: "pointer",
-    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+
+    transition: "0.3s ease",
+  },
+
+  quoteBtn: {
+    background: "linear-gradient(135deg, #4ed5e2, #0ea5e9)",
+
+    color: "#fff",
+
+    border: "none",
+
+    padding: "15px 28px",
+
+    borderRadius: "18px",
+
+    fontWeight: "800",
+    fontSize: "14px",
+    letterSpacing: "0.5px",
+
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+
+    cursor: "pointer",
+
+    transition: "0.3s ease",
   },
 };
 

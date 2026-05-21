@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ArrowUpRight } from "lucide-react";
 
-import LogoSTS from "../assets/logosistemas.jpg";
+import LogoSTS from "../assets/ServiciosSTS_SinFondo.png";
 
 const BarraSuperior = () => {
   const [hoveredPath, setHoveredPath] = useState(null);
@@ -28,9 +28,7 @@ const BarraSuperior = () => {
     >
       {/* LOGO */}
       <div style={styles.logoContainer}>
-        <div style={styles.logoWrapper}>
-          <img src={LogoSTS} alt="STS Logistics" style={styles.logo} />
-        </div>
+        <img src={LogoSTS} alt="STS Logistics" style={styles.logo} />
 
         <div style={styles.brandText}>
           <span style={styles.mainName}>SERVICIOS STS</span>
@@ -145,30 +143,18 @@ const styles = {
   logoContainer: {
     display: "flex",
     alignItems: "center",
-    gap: "18px",
-  },
-
-  logoWrapper: {
-    width: "58px",
-    height: "58px",
-
-    borderRadius: "18px",
-    overflow: "hidden",
-
-    background: "#fff",
-
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-
-    boxShadow: "0 10px 25px rgba(15,23,42,0.08)",
-    border: "1px solid rgba(15,23,42,0.05)",
+    gap: "14px",
   },
 
   logo: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
+    height: "72px",
+    width: "auto",
+
+    objectFit: "contain",
+
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.12))",
+
+    transition: "0.3s ease",
   },
 
   brandText: {

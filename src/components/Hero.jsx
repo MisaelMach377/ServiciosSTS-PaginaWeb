@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 // IMÁGENES
-import fotoLogistica1 from "../assets/hero.png";
-import fotoLogistica2 from "../assets/logosistemas.jpg";
+import fotoLogistica1 from "../assets/CAMION_6HD_PARADO.png";
+import fotoLogistica2 from "../assets/CAMIONES_1HD.png";
 
 // SLIDES
 const slides = [
@@ -76,14 +76,17 @@ const Hero = () => {
 
       {/* RIGHT SIDE */}
       <div style={styles.imageSide}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           <motion.img
             key={slides[index].id}
             src={slides[index].image}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, scale: 1.05 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.2 }}
+            transition={{
+              opacity: { duration: 1.2 },
+              scale: { duration: 7 },
+            }}
             style={styles.heroImg}
           />
         </AnimatePresence>
@@ -117,6 +120,7 @@ const styles = {
     width: "100%",
     overflow: "hidden",
     flexWrap: "wrap",
+    backgroundColor: "#0f172a",
   },
 
   // LEFT
@@ -130,6 +134,7 @@ const styles = {
     justifyContent: "center",
     color: "#fff",
     position: "relative",
+    zIndex: 2,
   },
 
   subTitle: {
@@ -170,7 +175,7 @@ const styles = {
     color: "#fff",
     border: "none",
     padding: "18px 34px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     fontWeight: "800",
     fontSize: "14px",
     display: "flex",
@@ -180,7 +185,7 @@ const styles = {
     width: "fit-content",
     letterSpacing: "1px",
     boxShadow: "0 10px 25px rgba(6,182,212,0.25)",
-    transition: "0.3s",
+    transition: "0.3s ease",
   },
 
   bottomInfo: {
@@ -200,18 +205,22 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     backgroundColor: "#000",
+    minHeight: "100vh",
   },
 
   heroImg: {
+    position: "absolute",
+    inset: 0,
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    objectPosition: "center center",
   },
 
   overlay: {
     position: "absolute",
     inset: 0,
-    background: "rgba(0,0,0,0.35)",
+    background: "linear-gradient(to right, rgba(0,0,0,0.25), rgba(0,0,0,0.05))",
     zIndex: 1,
   },
 

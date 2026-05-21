@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, BookOpen, ArrowRight } from "lucide-react";
 
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
-import logoBlanco from "../assets/logosistemas.jpg";
+import logoBlanco from "../assets/LogoBlanco_ServicioSts.png";
 
 const Footer = () => {
   const anioActual = new Date().getFullYear();
@@ -175,6 +175,7 @@ const styles = {
   logo: {
     width: "170px",
     marginBottom: "24px",
+    filter: "brightness(0) invert(1)",
   },
 
   description: {

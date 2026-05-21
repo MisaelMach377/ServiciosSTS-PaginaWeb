@@ -10,7 +10,7 @@ const Footer = () => {
   const anioActual = new Date().getFullYear();
 
   return (
-    <footer style={styles.footer}>
+    <footer id="contacto" style={styles.footer}>
       <div style={styles.container}>
         {/* LOGO + CONTACTO */}
         <div style={styles.column}>
@@ -118,7 +118,6 @@ const Footer = () => {
           </motion.div>
         </div>
       </div>
-
       {/* COPYRIGHT */}
       <div style={styles.bottomBar}>
         <p>© {anioActual} STS Logistics · Todos los derechos reservados</p>

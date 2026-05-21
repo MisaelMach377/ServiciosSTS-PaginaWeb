@@ -10,9 +10,9 @@ const BarraSuperior = () => {
 
   const navItems = [
     { name: "INICIO", path: "/#inicio" },
-    { name: "NOSOTROS", path: "#nosotros" },
+    { name: "NOSOTROS", path: "/#nosotros" },
     { name: "CONTROL 360°", path: "/control360" },
-    { name: "CLIENTES", path: "#clientes" },
+    { name: "CLIENTES", path: "/#clientes" },
   ];
 
   return (
@@ -65,7 +65,7 @@ const BarraSuperior = () => {
                 )}
               </AnimatePresence>
 
-              {item.path.startsWith("#") ? (
+              {item.path.includes("#") ? (
                 <a
                   href={item.path}
                   style={{
@@ -104,7 +104,8 @@ const BarraSuperior = () => {
           <Menu size={22} color="#0f172a" strokeWidth={2} />
         </motion.button>
 
-        <motion.button
+        <motion.a
+          href="#contacto"
           whileHover={{
             y: -3,
             scale: 1.03,
@@ -115,7 +116,7 @@ const BarraSuperior = () => {
         >
           COTIZAR
           <ArrowUpRight size={18} />
-        </motion.button>
+        </motion.a>
       </div>
     </motion.header>
   );
@@ -251,7 +252,7 @@ const styles = {
 
   quoteBtn: {
     background: "linear-gradient(135deg, #4ed5e2, #0ea5e9)",
-
+    textDecoration: "none",
     color: "#fff",
 
     border: "none",

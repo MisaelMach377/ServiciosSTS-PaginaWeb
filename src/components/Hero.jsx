@@ -53,19 +53,7 @@ const Hero = () => {
 
         <p style={styles.desc}>{slides[index].description}</p>
 
-        <div style={styles.buttonContainer}>
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: "#0891b2",
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={styles.ctaButton}
-          >
-            SOLICITAR COTIZACIÓN
-            <ChevronRight size={20} />
-          </motion.button>
-        </div>
+        <div style={styles.buttonContainer}></div>
 
         {/* INFO EXTRA */}
         <div style={styles.bottomInfo}>

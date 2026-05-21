@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Users2 } from "lucide-react";
 
 import fotoSobreNosotros from "../assets/CAMION_8.jpeg";
 
@@ -81,17 +81,31 @@ const Nosotros = () => {
             </div>
           </div>
 
-          {/* BUTTON */}
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: "#0891b2",
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={styles.btnCotizar}
+          {/* TEAM SECTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={styles.teamBox}
           >
-            SOLICITAR INFORMACIÓN
-          </motion.button>
+            <div style={styles.teamHeader}>
+              <Users2 size={24} color="#06b6d4" />
+              <h3 style={styles.teamTitle}>NUESTRO EQUIPO</h3>
+            </div>
+
+            <div style={styles.teamMember}>
+              <span style={styles.memberCargo}>JEFE DE FLOTA</span>
+              <span style={styles.memberNombre}>Carlos Tarazona Rosales</span>
+            </div>
+
+            <div style={styles.teamDivider}></div>
+
+            <div style={styles.teamMember}>
+              <span style={styles.memberCargo}>ENCARGADA ADMINISTRATIVA</span>
+              <span style={styles.memberNombre}>Anita De La Cruz</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* RIGHT */}
@@ -142,7 +156,7 @@ const Nosotros = () => {
 const styles = {
   section: {
     padding: "120px 5%",
-    backgroundColor: "#f8fafc",
+    background: "linear-gradient(to bottom, #f8fafc, #ffffff)",
   },
 
   container: {
@@ -217,13 +231,63 @@ const styles = {
     maxWidth: "600px",
   },
 
+  // TEAM
+  teamBox: {
+    backgroundColor: "#ffffff",
+    border: "1px solid #e2e8f0",
+    borderRadius: "18px",
+    padding: "28px",
+    marginBottom: "40px",
+    boxShadow: "0 10px 30px rgba(15,23,42,0.06)",
+  },
+
+  teamHeader: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    marginBottom: "22px",
+  },
+
+  teamTitle: {
+    margin: 0,
+    color: "#0f172a",
+    fontSize: "18px",
+    fontWeight: "800",
+    letterSpacing: "1px",
+  },
+
+  teamMember: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
+
+  memberCargo: {
+    fontSize: "12px",
+    color: "#06b6d4",
+    fontWeight: "800",
+    letterSpacing: "1.5px",
+  },
+
+  memberNombre: {
+    fontSize: "18px",
+    color: "#0f172a",
+    fontWeight: "700",
+  },
+
+  teamDivider: {
+    height: "1px",
+    backgroundColor: "#e2e8f0",
+    margin: "18px 0",
+  },
+
   // BUTTON
   btnCotizar: {
     backgroundColor: "#06b6d4",
     color: "#fff",
     border: "none",
     padding: "16px 34px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     fontWeight: "800",
     cursor: "pointer",
     letterSpacing: "1px",
@@ -265,6 +329,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     boxShadow: "0 20px 40px rgba(15,23,42,0.2)",
+    backdropFilter: "blur(10px)",
   },
 
   expNum: {

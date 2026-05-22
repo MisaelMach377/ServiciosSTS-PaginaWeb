@@ -131,8 +131,9 @@ const styles = {
 
     display: "grid",
 
-    gridTemplateColumns: "1.2fr 0.9fr 1fr",
-    gap: "60px",
+    gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1.2fr 0.9fr 1fr",
+
+    gap: window.innerWidth < 768 ? "45px" : "60px",
   },
 
   brandColumn: {

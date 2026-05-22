@@ -7,6 +7,7 @@ import LogoSTS from "../assets/ServiciosSTS_SinFondo.png";
 
 const BarraSuperior = () => {
   const [hoveredPath, setHoveredPath] = useState(null);
+  const isMobile = window.innerWidth < 768;
 
   const navItems = [
     { name: "INICIO", path: "/#inicio" },
@@ -24,18 +25,36 @@ const BarraSuperior = () => {
         damping: 18,
         stiffness: 100,
       }}
-      style={styles.header}
+      style={{
+        ...styles.header,
+        padding: isMobile ? "0 10px" : "0 5%",
+        height: isMobile ? "72px" : "95px",
+      }}
     >
       {/* LOGO */}
       <div style={styles.logoContainer}>
-        <img src={LogoSTS} alt="STS Logistics" style={styles.logo} />
-
+        <img
+          src={LogoSTS}
+          alt="STS Logistics"
+          style={{
+            ...styles.logo,
+            height: isMobile ? "48px" : "72px",
+          }}
+        />
         <div style={styles.brandText}>
-          <span style={styles.mainName}>SERVICIOS STS</span>
-
-          <span style={styles.tagline}>
-            Más que un proveedor, un socio estratégico{" "}
+          <span
+            style={{
+              ...styles.mainName,
+              fontSize: isMobile ? "16px" : "25px",
+            }}
+          >
+            SERVICIOS STS
           </span>
+          {!isMobile && (
+            <span style={styles.tagline}>
+              Más que un proveedor, un socio estratégico
+            </span>
+          )}
         </div>
       </div>
 
@@ -93,30 +112,34 @@ const BarraSuperior = () => {
 
       {/* ACTIONS */}
       <div style={styles.actions}>
-        <motion.button
-          whileHover={{
-            rotate: 90,
-            backgroundColor: "rgba(15,23,42,0.05)",
-          }}
-          whileTap={{ scale: 0.92 }}
-          style={styles.iconBtn}
-        >
-          <Menu size={22} color="#0f172a" strokeWidth={2} />
-        </motion.button>
+        {!isMobile && (
+          <motion.button
+            whileHover={{
+              rotate: 90,
+              backgroundColor: "rgba(15,23,42,0.05)",
+            }}
+            whileTap={{ scale: 0.92 }}
+            style={styles.iconBtn}
+          >
+            <Menu size={22} color="#0f172a" strokeWidth={2} />
+          </motion.button>
+        )}
 
-        <motion.a
-          href="#contacto"
-          whileHover={{
-            y: -3,
-            scale: 1.03,
-            boxShadow: "0 18px 35px rgba(78,213,226,0.35)",
-          }}
-          whileTap={{ scale: 0.95 }}
-          style={styles.quoteBtn}
-        >
-          COTIZAR
-          <ArrowUpRight size={18} />
-        </motion.a>
+        {!isMobile && (
+          <motion.a
+            href="#contacto"
+            whileHover={{
+              y: -3,
+              scale: 1.03,
+              boxShadow: "0 18px 35px rgba(78,213,226,0.35)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={styles.quoteBtn}
+          >
+            COTIZAR
+            <ArrowUpRight size={18} />
+          </motion.a>
+        )}
       </div>
     </motion.header>
   );
@@ -144,7 +167,8 @@ const styles = {
   logoContainer: {
     display: "flex",
     alignItems: "center",
-    gap: "14px",
+    gap: "10px",
+    marginRight: "14px",
   },
 
   logo: {
@@ -184,6 +208,8 @@ const styles = {
     padding: "7px",
     borderRadius: "22px",
     border: "1px solid rgba(15,23,42,0.04)",
+    overflowX: "auto",
+    maxWidth: "100%",
   },
 
   navList: {
@@ -193,12 +219,17 @@ const styles = {
     padding: 0,
     gap: "8px",
     position: "relative",
+    WebkitOverflowScrolling: "touch",
+    overflowX: "auto",
+    whiteSpace: "nowrap",
+    scrollbarWidth: "none",
   },
 
   navItem: {
     position: "relative",
-    padding: "12px 24px",
+    padding: "10px 14px",
     cursor: "pointer",
+    flexShrink: 0,
   },
 
   navGlow: {

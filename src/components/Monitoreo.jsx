@@ -14,6 +14,8 @@ import {
 // CAPTURAS
 import dashboardMapa from "../assets/PruebaMapa-ServiciosSTS.jfif";
 import pruebaCorreo from "../assets/PruebaCorreo-ServiciosSTS.jfif";
+import Geocercas from "../assets/GEOCERCAS_STS.jpg";
+import Historial from "../assets/Historial_STS.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -228,33 +230,24 @@ const MonitoreoReal = () => {
               title="Geocercas GPS"
               icon={<MapIcon size={18} color="#4ed5e2" />}
             >
-              <div style={styles.geoPlaceholder}>
-                <Navigation size={22} color="#4ed5e2" />
-              </div>
+              <img src={Geocercas} alt="Aviso" style={styles.imgSmall} />
 
               <p style={styles.cardDesc}>
-                Supervisión perimetral con alertas dinámicas ante desviaciones o
-                incidencias de ruta.
+                Supervisión perimetral con geocercas configurables para control
+                de zonas estratégicas.
               </p>
             </Card>
 
             <Card
               delay={0.3}
-              tag="NUBE"
+              tag="HISTORIAL RUTAS"
               title="Historial Centralizado"
               icon={<History size={18} color="#4ed5e2" />}
             >
-              <div style={styles.historyList}>
-                <div style={styles.historyItem}>
-                  • Historial de seguridad activos
-                </div>
-
-                <div style={styles.historyItem}>• Historial de tus rutas</div>
-              </div>
+              <img src={Historial} alt="Aviso" style={styles.imgSmall} />
 
               <p style={styles.cardDesc}>
-                Infraestructura segura con respaldo y trazabilidad total de cada
-                evento registrado.
+                Registro completo de eventos, rutas y telemetría para análisis
               </p>
             </Card>
           </div>

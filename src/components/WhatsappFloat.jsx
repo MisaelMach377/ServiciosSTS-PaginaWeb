@@ -19,7 +19,7 @@ export default function WhatsappFloat() {
 
       {/* Botón Principal con el Logo Oficial */}
       <motion.a
-        href="https://wa.me/51960632001"
+        href="https://wa.me/51995391926"
         target="_blank"
         rel="noopener noreferrer"
         style={styles.whatsappBtn}

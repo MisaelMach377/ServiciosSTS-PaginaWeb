@@ -61,7 +61,7 @@ const ContactoBanner = () => {
         <div style={styles.contactCards}>
           {/* PHONE */}
           <motion.a
-            href="tel:+51960632201"
+            href="tel:+51995391926"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             style={styles.phoneCard}
@@ -73,7 +73,7 @@ const ContactoBanner = () => {
             <div>
               <span style={styles.cardLabel}>LLÁMANOS</span>
 
-              <span style={styles.cardText}>+51 960 632 201</span>
+              <span style={styles.cardText}>+51 995 391 926</span>
             </div>
           </motion.a>
 

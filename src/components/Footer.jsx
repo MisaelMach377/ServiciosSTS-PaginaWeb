@@ -1,8 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, BookOpen, ArrowRight } from "lucide-react";
-
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 import logoBlanco from "../assets/LogoBlanco_ServicioSts.png";
 
@@ -11,47 +8,21 @@ const Footer = () => {
 
   return (
     <footer id="contacto" style={styles.footer}>
+      <div style={styles.overlay}></div>
+
       <div style={styles.container}>
-        {/* LOGO + CONTACTO */}
-        <div style={styles.column}>
+        {/* IZQUIERDA */}
+        <div style={styles.brandColumn}>
           <img src={logoBlanco} alt="STS Logistics" style={styles.logo} />
 
           <p style={styles.description}>
             Soluciones modernas de transporte y logística orientadas a la
-            eficiencia, seguridad y cumplimiento operativo.
+            eficiencia, seguridad y cumplimiento operativo en los principales
+            puertos del Perú.
           </p>
-
-          <div style={styles.contactGroup}>
-            <div style={styles.contactItem}>
-              <MapPin size={18} color="#4ed5e2" />
-              <p style={styles.text}>
-                Javier Prado Oeste 757, Magdalena del Mar, Lima – Perú
-              </p>
-            </div>
-
-            <div style={styles.contactItem}>
-              <Phone size={18} color="#4ed5e2" />
-              <p style={styles.text}>+51 923 220 859</p>
-            </div>
-
-            <div style={styles.contactItem}>
-              <Mail size={18} color="#4ed5e2" />
-              <p style={styles.text}>gerencia@servicios-sts.com</p>
-            </div>
-          </div>
-
-          <div style={styles.socials}>
-            <SocialBtn>
-              <FaFacebookF />
-            </SocialBtn>
-
-            <SocialBtn>
-              <FaLinkedinIn />
-            </SocialBtn>
-          </div>
         </div>
 
-        {/* SERVICIOS */}
+        {/* CENTRO */}
         <div style={styles.column}>
           <h3 style={styles.title}>SERVICIOS</h3>
 
@@ -71,53 +42,46 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* COMPROMISO */}
+        {/* DERECHA */}
         <div style={styles.column}>
-          <h3 style={styles.title}>COMPROMISO</h3>
+          <h3 style={styles.title}>CONTACTO</h3>
 
-          <ul style={styles.list}>
-            {[
-              "Seguridad Operativa",
-              "Gestión SSOMA",
-              "Cumplimiento y Calidad",
-              "Atención Personalizada",
-              "Mejora Continua",
-            ].map((item) => (
-              <li key={item} style={styles.listItem}>
-                <ArrowRight size={15} color="#4ed5e2" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div style={styles.infoBox}>
+            <div style={styles.contactItem}>
+              <MapPin size={18} color="#4ed5e2" />
 
-        {/* CONTACTO */}
-        <div style={styles.column}>
-          <h3 style={styles.title}>CONTACTO DIRECTO</h3>
-
-          <div style={styles.phoneCard}>
-            <div style={styles.phoneIcon}>
-              <Phone size={18} color="#fff" />
+              <p style={styles.text}>
+                Cal. Llumpa Nro. 1259 Urb. Parque Del Naranjal
+              </p>
             </div>
 
-            <div>
-              <p style={styles.phoneLabel}>Llámanos</p>
-              <span style={styles.phoneNumber}>+51 960 632 201</span>
+            <div style={styles.contactItem}>
+              <Phone size={18} color="#4ed5e2" />
+
+              <p style={styles.text}>+51 995 391 926</p>
+            </div>
+
+            <div style={styles.contactItem}>
+              <Phone size={18} color="#4ed5e2" />
+
+              <p style={styles.text}>+51 975 644 321</p>
+            </div>
+
+            <div style={styles.contactItem}>
+              <Mail size={18} color="#4ed5e2" />
+
+              <p style={styles.text}>gerencia@servicios-sts.com</p>
+            </div>
+
+            <div style={styles.contactItem}>
+              <Mail size={18} color="#4ed5e2" />
+
+              <p style={styles.text}>tramitesdoc@servicios-sts.com</p>
             </div>
           </div>
-
-          <p style={styles.consultText}>
-            Nuestro equipo está listo para brindarte atención rápida y
-            soluciones adaptadas a tus necesidades logísticas.
-          </p>
-
-          <motion.div whileHover={{ y: -4 }} style={styles.reclamaciones}>
-            <BookOpen size={22} color="#fff" />
-
-            <span style={styles.reclamasText}>LIBRO DE RECLAMACIONES</span>
-          </motion.div>
         </div>
       </div>
+
       {/* COPYRIGHT */}
       <div style={styles.bottomBar}>
         <p>© {anioActual} STS Logistics · Todos los derechos reservados</p>
@@ -138,32 +102,43 @@ const Footer = () => {
   );
 };
 
-const SocialBtn = ({ children }) => (
-  <motion.a
-    whileHover={{
-      y: -4,
-      backgroundColor: "#4ed5e2",
-    }}
-    href="#"
-    style={styles.socialIcon}
-  >
-    {children}
-  </motion.a>
-);
-
 const styles = {
   footer: {
+    position: "relative",
     background: "linear-gradient(to bottom, #0f172a 0%, #020617 100%)",
     color: "#fff",
-    padding: "90px 5% 25px 5%",
+    padding: "55px 5% 25px 5%",
+    overflow: "hidden",
+  },
+
+  overlay: {
+    position: "absolute",
+    top: "-150px",
+    right: "-150px",
+    width: "350px",
+    height: "350px",
+    background: "rgba(78,213,226,0.08)",
+    borderRadius: "50%",
+    filter: "blur(90px)",
   },
 
   container: {
-    maxWidth: "1250px",
+    position: "relative",
+    zIndex: 2,
+
+    maxWidth: "1280px",
     margin: "0 auto",
+
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-    gap: "45px",
+
+    gridTemplateColumns: "1.2fr 0.9fr 1fr",
+    gap: "60px",
+  },
+
+  brandColumn: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
 
   column: {
@@ -172,8 +147,8 @@ const styles = {
   },
 
   logo: {
-    width: "170px",
-    marginBottom: "24px",
+    width: "185px",
+    marginBottom: "28px",
     filter: "brightness(0) invert(1)",
   },
 
@@ -181,21 +156,26 @@ const styles = {
     color: "#94a3b8",
     lineHeight: "1.9",
     fontSize: "14px",
-    marginBottom: "28px",
+    maxWidth: "430px",
   },
 
-  title: {
-    fontSize: "17px",
-    fontWeight: "800",
-    marginBottom: "24px",
-    letterSpacing: "0.5px",
-    color: "#fff",
-  },
-
-  contactGroup: {
+  infoBox: {
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: "24px",
+    padding: "28px",
     display: "flex",
     flexDirection: "column",
     gap: "18px",
+    backdropFilter: "blur(10px)",
+  },
+
+  title: {
+    fontSize: "18px",
+    fontWeight: "800",
+    marginBottom: "28px",
+    letterSpacing: "1px",
+    color: "#fff",
   },
 
   contactItem: {
@@ -211,113 +191,51 @@ const styles = {
     margin: 0,
   },
 
-  socials: {
-    display: "flex",
-    gap: "12px",
-    marginTop: "30px",
-  },
-
-  socialIcon: {
-    width: "42px",
-    height: "42px",
-    borderRadius: "14px",
-    background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    cursor: "pointer",
-    transition: "0.3s ease",
-    textDecoration: "none",
-  },
-
   list: {
     listStyle: "none",
     padding: 0,
     margin: 0,
+
     display: "flex",
     flexDirection: "column",
-    gap: "16px",
+    gap: "18px",
   },
 
   listItem: {
     display: "flex",
     alignItems: "center",
     gap: "10px",
+
     color: "#cbd5e1",
+
     fontSize: "14px",
-    transition: "0.3s ease",
-    cursor: "pointer",
-  },
 
-  phoneCard: {
-    display: "flex",
-    alignItems: "center",
-    gap: "15px",
-    background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    borderRadius: "20px",
-    padding: "18px",
-    marginBottom: "22px",
-  },
+    paddingBottom: "14px",
 
-  phoneIcon: {
-    width: "50px",
-    height: "50px",
-    borderRadius: "16px",
-    background: "linear-gradient(135deg, #4ed5e2, #0ea5e9)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  phoneLabel: {
-    margin: 0,
-    color: "#94a3b8",
-    fontSize: "13px",
-  },
-
-  phoneNumber: {
-    fontSize: "18px",
-    fontWeight: "800",
-    color: "#fff",
-  },
-
-  consultText: {
-    color: "#94a3b8",
-    lineHeight: "1.8",
-    fontSize: "14px",
-  },
-
-  reclamaciones: {
-    marginTop: "28px",
-    background: "linear-gradient(135deg, #4ed5e2, #0891b2)",
-    borderRadius: "18px",
-    padding: "16px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "10px",
-    cursor: "pointer",
-  },
-
-  reclamasText: {
-    fontSize: "12px",
-    fontWeight: "800",
-    letterSpacing: "0.5px",
+    borderBottom: "1px solid rgba(255,255,255,0.05)",
   },
 
   bottomBar: {
-    maxWidth: "1250px",
-    margin: "70px auto 0 auto",
-    paddingTop: "24px",
+    position: "relative",
+    zIndex: 2,
+
+    maxWidth: "1280px",
+
+    margin: "45px auto 0 auto",
+    paddingTop: "25px",
+
     borderTop: "1px solid rgba(255,255,255,0.08)",
+
     display: "flex",
+
     justifyContent: "space-between",
+
     flexWrap: "wrap",
+
     gap: "12px",
+
     color: "#64748b",
+
     fontSize: "13px",
   },
 

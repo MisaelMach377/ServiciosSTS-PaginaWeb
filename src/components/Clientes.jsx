@@ -2,12 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // IMPORTA TUS LOGOS
-import logoAderbest from "../assets/logosistemas.jpg";
-import logoAdv from "../assets/logosistemas.jpg";
-import logoAustral from "../assets/logosistemas.jpg";
-import logoCise from "../assets/logosistemas.jpg";
-import logoEissa from "../assets/logosistemas.jpg";
-import logoGeconse from "../assets/logosistemas.jpg";
+import logoAderbest from "../assets/SPOT_LOGISTICS.jfif";
+import logoAdv from "../assets/TISUR.jfif";
+import logoAustral from "../assets/UNIMAR_LOGISTICS.jfif";
+import logoCise from "../assets/SALAVERRY_TERMINAL.jfif";
+import logoEissa from "../assets/ACCESS_WORLD_LOGO.jpg";
+import logoGeconse from "../assets/PERUVIAN_LOGISTICS_LOGO.jpg";
 
 const Clientes = () => {
   const logos = [
@@ -51,6 +51,7 @@ const Clientes = () => {
             whileHover={{
               y: -6,
               scale: 1.03,
+              boxShadow: "0 18px 45px rgba(14,165,233,0.15)",
             }}
             transition={{
               duration: 0.4,
@@ -59,7 +60,16 @@ const Clientes = () => {
             viewport={{ once: true }}
             style={styles.logoCard}
           >
-            <img src={logo.src} alt={logo.name} style={styles.img} />
+            <motion.img
+              src={logo.src}
+              alt={logo.name}
+              style={styles.img}
+              whileHover={{
+                filter: "grayscale(0%)",
+                opacity: 1,
+                scale: 1.05,
+              }}
+            />{" "}
           </motion.div>
         ))}
       </div>
@@ -127,24 +137,32 @@ const styles = {
     background: "rgba(255,255,255,0.95)",
     border: "1px solid rgba(15,23,42,0.05)",
     borderRadius: "24px",
-    padding: "35px 25px",
+
+    height: "180px", // 🔥 tamaño fijo
+    padding: "24px",
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "150px",
+
     boxShadow: "0 10px 30px rgba(15,23,42,0.05)",
     transition: "all 0.3s ease",
     backdropFilter: "blur(10px)",
+
+    overflow: "hidden",
   },
 
   img: {
-    maxWidth: "150px",
     width: "100%",
-    height: "auto",
+    maxWidth: "160px",
+
+    maxHeight: "90px", // 🔥 todas iguales
     objectFit: "contain",
+
     filter: "grayscale(100%)",
-    opacity: "0.75",
-    transition: "all 0.3s ease",
+    opacity: "0.7",
+
+    transition: "all 0.35s ease",
   },
 };
 

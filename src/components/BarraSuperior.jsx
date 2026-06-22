@@ -113,16 +113,21 @@ const BarraSuperior = () => {
       {/* ACTIONS */}
       <div style={styles.actions}>
         {!isMobile && (
-          <motion.button
+          <motion.a
+            href="https://sistemasts.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{
-              rotate: 90,
-              backgroundColor: "rgba(15,23,42,0.05)",
+              y: -3,
+              scale: 1.03,
+              boxShadow: "0 18px 35px rgba(15,23,42,0.25)",
             }}
-            whileTap={{ scale: 0.92 }}
-            style={styles.iconBtn}
+            whileTap={{ scale: 0.95 }}
+            style={styles.portalBtn}
           >
-            <Menu size={22} color="#0f172a" strokeWidth={2} />
-          </motion.button>
+            PORTAL STS
+            <ArrowUpRight size={18} />
+          </motion.a>
         )}
 
         {!isMobile && (
@@ -244,7 +249,29 @@ const styles = {
 
     zIndex: -1,
   },
+  portalBtn: {
+    background: "linear-gradient(135deg, #0f172a, #334155)",
+    textDecoration: "none",
+    color: "#fff",
 
+    border: "1px solid rgba(255,255,255,0.08)",
+
+    padding: "14px 20px",
+
+    borderRadius: "14px",
+
+    fontWeight: "900",
+    fontSize: "13px",
+    letterSpacing: "1px",
+
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+
+    cursor: "pointer",
+
+    transition: "0.3s ease",
+  },
   link: {
     textDecoration: "none",
     fontWeight: "800",

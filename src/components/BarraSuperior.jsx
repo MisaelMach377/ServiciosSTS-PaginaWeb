@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ArrowUpRight } from "lucide-react";
@@ -7,11 +7,21 @@ import LogoSTS from "../assets/ServiciosSTS_SinFondo.png";
 
 const BarraSuperior = () => {
   const [hoveredPath, setHoveredPath] = useState(null);
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const navItems = [
     { name: "INICIO", path: "/#inicio" },
     { name: "NOSOTROS", path: "/#nosotros" },
+    { name: "PORTAL STS", path: "/#portal" },
     { name: "CONTROL 360°", path: "/control360" },
     { name: "CLIENTES", path: "/#clientes" },
   ];
@@ -112,24 +122,6 @@ const BarraSuperior = () => {
 
       {/* ACTIONS */}
       <div style={styles.actions}>
-        {!isMobile && (
-          <motion.a
-            href="https://sistemasts.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{
-              y: -3,
-              scale: 1.03,
-              boxShadow: "0 18px 35px rgba(15,23,42,0.25)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={styles.portalBtn}
-          >
-            PORTAL STS
-            <ArrowUpRight size={18} />
-          </motion.a>
-        )}
-
         {!isMobile && (
           <motion.a
             href="#contacto"
@@ -249,29 +241,7 @@ const styles = {
 
     zIndex: -1,
   },
-  portalBtn: {
-    background: "linear-gradient(135deg, #0f172a, #334155)",
-    textDecoration: "none",
-    color: "#fff",
 
-    border: "1px solid rgba(255,255,255,0.08)",
-
-    padding: "14px 20px",
-
-    borderRadius: "14px",
-
-    fontWeight: "900",
-    fontSize: "13px",
-    letterSpacing: "1px",
-
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-
-    cursor: "pointer",
-
-    transition: "0.3s ease",
-  },
   link: {
     textDecoration: "none",
     fontWeight: "800",

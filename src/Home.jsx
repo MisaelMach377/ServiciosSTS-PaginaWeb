@@ -3,12 +3,17 @@ import Nosotros from "./components/Nosotros.jsx";
 import ContactoBanner from "./components/ContactoBanner.jsx";
 import Beneficios from "./components/Beneficios.jsx";
 import Clientes from "./components/Clientes.jsx";
+import PortalSTS from "./components/PortalSTS.jsx";
 
 export default function Home() {
   return (
     <>
       <section id="inicio">
         <Hero />
+      </section>
+
+      <section id="portal">
+        <PortalSTS />
       </section>
 
       <section id="nosotros">

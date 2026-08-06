@@ -2,6 +2,7 @@ import React from "react";
 import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 import logoBlanco from "../assets/LogoBlanco_ServicioSts.png";
+import logoDev from "../assets/LogoMisael-MachDev-Sinfondo.png";
 
 const Footer = () => {
   const anioActual = new Date().getFullYear();
@@ -86,17 +87,29 @@ const Footer = () => {
       <div style={styles.bottomBar}>
         <p>© {anioActual} STS Logistics · Todos los derechos reservados</p>
 
-        <p>
-          Diseñado y desarrollado por{" "}
-          <a
-            href="https://misaelmach377.github.io/MyPortafolio/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={styles.devLink}
-          >
-            MachiavelloDev
-          </a>
-        </p>
+        <a
+          href="https://machiavellomisadev.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...styles.devLink,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            marginRight: "40px",
+          }}
+        >
+          Diseñado y desarrollado por
+          <img
+            src={logoDev}
+            alt="MachiavelloDev"
+            style={{
+              height: "30px",
+              width: "auto",
+              objectFit: "contain",
+            }}
+          />
+        </a>
       </div>
     </footer>
   );
